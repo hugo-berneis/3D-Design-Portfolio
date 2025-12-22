@@ -1,0 +1,20 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "/Users/mberneis/Library/Application Support/Herd/bin/php83",
+            "args": [
+                "/Users/mberneis/dev/hugo/3D-Design-Portfolio/artisan",
+                "boost:mcp"
+            ]
+        },
+        "herd": {
+            "command": "/Users/mberneis/Library/Application Support/Herd/bin/php83",
+            "args": [
+                "/Applications/Herd.app/Contents/Resources/herd-mcp.phar"
+            ],
+            "env": {
+                "SITE_PATH": "/Users/mberneis/dev/hugo/3D-Design-Portfolio"
+            }
+        }
+    }
+}
