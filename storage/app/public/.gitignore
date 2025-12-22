@@ -1,2 +1,6 @@
 *
+!*/
 !.gitignore
+!models/**
+models/CafeOven.stl
+!pictures/**
