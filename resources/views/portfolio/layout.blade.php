@@ -40,13 +40,13 @@
                 class="text-xl font-bold text-neutral-900 dark:text-white no-underline tracking-tighter">Hugo's 3D Design Portfolio</a>
             <nav>
                 <a href="{{ route('portfolio.index') }}"
-                    class="text-neutral-500 dark:text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-neutral-900 dark:hover:text-white">Home</a>
+                    class="{{ request()->routeIs('portfolio.index') ? 'text-blue-600 dark:text-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white' }} no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide">Home</a>
                 <a href="{{ route('pictures.index') }}"
-                    class="text-neutral-500 dark:text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-neutral-900 dark:hover:text-white">Pictures</a>
+                    class="{{ request()->routeIs('pictures.index') ? 'text-blue-600 dark:text-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white' }} no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide">Pictures</a>
                 <a href="{{ route('portfolio.cv') }}"
-                    class="text-neutral-500 dark:text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-neutral-900 dark:hover:text-white">CV</a>
+                    class="{{ request()->routeIs('portfolio.cv') ? 'text-blue-600 dark:text-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white' }} no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide">CV</a>
                 <a href="{{ route('portfolio.contact') }}"
-                    class="text-neutral-500 dark:text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-neutral-900 dark:hover:text-white">Contact</a>
+                    class="{{ request()->routeIs('portfolio.contact') ? 'text-blue-600 dark:text-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white' }} no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide">Contact</a>
             </nav>
         </div>
     </header>
