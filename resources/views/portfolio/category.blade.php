@@ -3,39 +3,39 @@
 @section('title', $category . ' Designs')
 
 @section('content')
-<section class="hero">
-    <div class="container">
-        <h1>{{ $category }} Collection</h1>
-        <p>Explore my {{ $category }} designs and projects</p>
+<section class="bg-neutral-950 text-neutral-200 py-20 px-8 text-center border-b border-neutral-800">
+    <div class="max-w-[1400px] mx-auto">
+        <h1 class="text-4xl mb-4 font-bold -tracking-wide text-white">{{ $category }} Collection</h1>
+        <p class="text-[1.05rem] opacity-80 max-w-[600px] mx-auto tracking-wide">Explore my {{ $category }} designs and projects</p>
     </div>
 </section>
 
-<section class="category-filters">
-    <a href="{{ route('portfolio.index') }}" class="filter-btn">All</a>
-    <a href="{{ route('portfolio.category', $category) }}" class="filter-btn active">{{ $category }}</a>
+<section class="flex gap-3 p-8 justify-center flex-wrap max-w-[1400px] mx-auto border-b border-neutral-800">
+    <a href="{{ route('portfolio.index') }}" class="bg-transparent border border-neutral-800 py-2 px-5 rounded-sm cursor-pointer font-medium transition-all duration-200 text-neutral-400 text-sm tracking-wide capitalize hover:border-neutral-600 hover:text-neutral-200">All</a>
+    <a href="{{ route('portfolio.category', $category) }}" class="bg-white text-neutral-950 border border-white py-2 px-5 rounded-sm cursor-pointer font-medium transition-all duration-200 text-sm tracking-wide capitalize">{{ $category }}</a>
 </section>
 
-<div class="portfolio-grid">
+<div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6 p-12 max-w-[1400px] mx-auto">
     @forelse ($designs as $design)
-        <div class="portfolio-card">
+        <div class="bg-neutral-900 rounded-sm overflow-hidden shadow-sm transition-all duration-200 cursor-pointer border border-neutral-800 hover:shadow-lg hover:border-neutral-700 group">
             @if ($design->model_file)
-                <div class="model-viewer" data-model-viewer data-model-path="{{ Storage::url($design->model_file) }}">
-                    <div class="model-viewer-label">Hover to rotate</div>
+                <div class="w-full h-[250px] bg-neutral-900 rounded-sm relative overflow-hidden border border-neutral-800 group" data-model-viewer data-model-path="{{ Storage::url($design->model_file) }}">
+                    <div class="absolute bottom-2.5 left-2.5 bg-black/60 text-neutral-400 py-1.5 px-3 rounded-sm text-xs pointer-events-none uppercase tracking-wider opacity-0 transition-opacity duration-200 group-hover:opacity-100 model-viewer-label">Hover to rotate</div>
                 </div>
             @else
-                <img src="{{ $design->thumbnail }}" alt="{{ $design->title }}" loading="lazy">
+                <img src="{{ $design->thumbnail }}" alt="{{ $design->title }}" loading="lazy" class="w-full h-[250px] object-cover block">
             @endif
-            <div class="portfolio-card-content">
-                <div class="portfolio-card-category">{{ $design->category }}</div>
-                <h3 class="portfolio-card-title">{{ $design->title }}</h3>
-                <p class="portfolio-card-description">{{ Str::limit($design->description, 100) }}</p>
-                <a href="{{ route('portfolio.show', $design) }}" class="btn-view">View Project →</a>
+            <div class="p-6">
+                <div class="inline-block bg-neutral-800 text-neutral-400 py-1.5 px-3 rounded-sm text-xs mb-3 uppercase tracking-wider font-medium">{{ $design->category }}</div>
+                <h3 class="text-base font-semibold mb-2 text-white tracking-wide">{{ $design->title }}</h3>
+                <p class="text-neutral-400 text-sm leading-relaxed mb-4">{{ Str::limit($design->description, 100) }}</p>
+                <a href="{{ route('portfolio.show', $design) }}" class="inline-block bg-transparent text-neutral-200 py-2 px-4 border border-neutral-800 rounded-sm no-underline text-sm font-medium transition-all duration-200 tracking-wide hover:bg-neutral-900 hover:border-neutral-600 hover:text-white">View Project →</a>
             </div>
         </div>
     @empty
-        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-            <p style="color: #999; font-size: 1.1rem;">No designs found in the {{ $category }} category.</p>
-            <a href="{{ route('portfolio.index') }}" class="btn-view" style="margin-top: 1rem; display: inline-block;">Back to Portfolio</a>
+        <div class="col-span-full text-center p-12">
+            <p class="text-neutral-400 text-lg">No designs found in the {{ $category }} category.</p>
+            <a href="{{ route('portfolio.index') }}" class="inline-block bg-transparent text-neutral-200 py-2 px-4 border border-neutral-800 rounded-sm no-underline text-sm font-medium transition-all duration-200 tracking-wide hover:bg-neutral-900 hover:border-neutral-600 hover:text-white mt-4">Back to Portfolio</a>
         </div>
     @endforelse
 </div>

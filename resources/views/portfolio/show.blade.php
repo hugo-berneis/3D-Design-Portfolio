@@ -3,73 +3,61 @@
 @section('title', $design->title)
 
 @section('content')
-    <div style="max-width: 1000px; margin: 0 auto; padding: 3rem 2rem;">
-        <a href="{{ route('portfolio.index') }}"
-            style="text-decoration: none; color: #999; margin-bottom: 2rem; display: inline-block; font-size: 0.9rem;">←
-            Back to Portfolio</a>
+    <div class="max-w-[1000px] mx-auto py-12 px-8">
+        <a href="{{ route('portfolio.index') }}" class="no-underline text-neutral-400 mb-8 inline-block text-sm transition-colors duration-200 hover:text-white">← Back to Portfolio</a>
 
         <article>
             @if ($design->model_file)
-                <div
-                    style="background-color: #1a1a1a; border-radius: 2px; overflow: hidden; margin-bottom: 2rem; border: 1px solid #2a2a2a; height: 500px;">
-                    <div class="model-viewer" data-model-viewer data-model-path="{{ Storage::url($design->model_file) }}"
+                <div class="bg-neutral-900 rounded-sm overflow-hidden mb-8 border border-neutral-800 h-[500px] relative">
+                    <div class="w-full h-full relative" data-model-viewer data-model-path="{{ Storage::url($design->model_file) }}"
                         data-design-id="{{ $design->id }}" data-rotation-x="{{ $design->rotation_x }}"
-                        data-rotation-y="{{ $design->rotation_y }}" data-rotation-z="{{ $design->rotation_z }}"
-                        style="height: 100%;">
-                        <div class="model-viewer-label">Move mouse to rotate</div>
+                        data-rotation-y="{{ $design->rotation_y }}" data-rotation-z="{{ $design->rotation_z }}">
+                         <div class="absolute bottom-2.5 left-2.5 bg-black/60 text-neutral-400 py-1.5 px-3 rounded-sm text-xs pointer-events-none uppercase tracking-wider opacity-0 transition-opacity duration-200 hover:opacity-100 model-viewer-label">Move mouse to rotate</div>
                     </div>
 
                 </div>
             @else
-                <div style="background-color: #1a1a1a; border-radius: 2px; overflow: hidden; margin-bottom: 2rem;">
-                    <img src="{{ $design->image }}" alt="{{ $design->title }}"
-                        style="width: 100%; height: auto; display: block;">
+                <div class="bg-neutral-900 rounded-sm overflow-hidden mb-8 border border-neutral-800">
+                    <img src="{{ $design->image }}" alt="{{ $design->title }}" class="w-full h-auto block">
                 </div>
             @endif
 
-            <div style="background-color: #1a1a1a; padding: 2rem; border-radius: 2px; border: 1px solid #2a2a2a;">
-                <div style="margin-bottom: 1.5rem;">
-                    <span class="portfolio-card-category">{{ $design->category }}</span>
+            <div class="bg-neutral-900 p-8 rounded-sm border border-neutral-800">
+                <div class="mb-6">
+                    <span class="inline-block bg-neutral-800 text-neutral-400 py-1.5 px-3 rounded-sm text-xs mb-3 uppercase tracking-wider font-medium">{{ $design->category }}</span>
                 </div>
 
-                <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: #ffffff;">{{ $design->title }}</h1>
+                <h1 class="text-4xl mb-4 text-white font-bold tracking-tight">{{ $design->title }}</h1>
 
-                <p style="font-size: 1.1rem; color: #e5e5e5; line-height: 1.8; margin-bottom: 2rem;">
+                <p class="text-lg text-neutral-200 leading-relaxed mb-8">
                     {{ $design->description }}
                 </p>
 
                 @if ($design->model_url)
-                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #2a2a2a;">
-                        <h2 style="font-size: 1.3rem; margin-bottom: 1rem; color: #ffffff;">View on Sketchfab</h2>
-                        <p style="color: #999; margin-bottom: 1rem;">Open the interactive model on Sketchfab for additional
-                            options</p>
-                        <a href="{{ $design->model_url }}" target="_blank" class="btn-view">Open on Sketchfab →</a>
+                    <div class="mt-8 pt-8 border-t border-neutral-800">
+                        <h2 class="text-xl mb-4 text-white font-semibold">View on Sketchfab</h2>
+                        <p class="text-neutral-400 mb-4">Open the interactive model on Sketchfab for additional options</p>
+                        <a href="{{ $design->model_url }}" target="_blank" class="inline-block bg-transparent text-neutral-200 py-2 px-4 border border-neutral-800 rounded-sm no-underline text-sm font-medium transition-all duration-200 tracking-wide hover:bg-neutral-900 hover:border-neutral-600 hover:text-white">Open on Sketchfab →</a>
                     </div>
                 @endif
 
-                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #2a2a2a; display: flex; gap: 1rem;">
-                    <div style="flex: 1;">
-                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Created</p>
-                        <p style="font-weight: 500; color: #e5e5e5;">{{ $design->created_at->format('M d, Y') }}</p>
+                <div class="mt-8 pt-8 border-t border-neutral-800 flex gap-4 sm:gap-8 flex-wrap">
+                    <div class="flex-1 min-w-[150px]">
+                        <p class="text-neutral-500 text-sm mb-2 uppercase tracking-wide font-medium">Created</p>
+                        <p class="font-medium text-neutral-200">{{ $design->created_at->format('M d, Y') }}</p>
                     </div>
-                    <div style="flex: 1;">
-                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Category</p>
-                        <a href="{{ route('portfolio.category', $design->category) }}"
-                            style="font-weight: 500; color: #e5e5e5; text-decoration: none; transition: color 0.2s ease;"
-                            onmouseover="this.style.color='#fff'"
-                            onmouseout="this.style.color='#e5e5e5'">{{ $design->category }}</a>
+                    <div class="flex-1 min-w-[150px]">
+                        <p class="text-neutral-500 text-sm mb-2 uppercase tracking-wide font-medium">Category</p>
+                        <a href="{{ route('portfolio.category', $design->category) }}" class="no-underline text-neutral-200 font-medium transition-colors duration-200 hover:text-white">{{ $design->category }}</a>
                     </div>
                 </div>
             </div>
 
             @if ($design->model_file)
-                <div
-                    style="margin-top: 3rem; padding: 2.5rem; background-color: #1a1a1a; border-radius: 8px; text-align: center; border: 1px solid #2a2a2a; background: linear-gradient(145deg, #1a1a1a 0%, #222 100%);">
-                    <h3 style="margin-bottom: 1rem; color: #ffffff; font-size: 1.5rem;">Download Model</h3>
-                    <p style="color: #999; margin-bottom: 2rem; font-size: 1rem;">Get the STL file for your own use or 3D
-                        printing.</p>
-                    <a href="{{ Storage::url($design->model_file) }}" download class="btn-view"
-                        style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; font-size: 1.1rem; background: #2563eb; border: none; border-radius: 4px; color: white; text-decoration: none; font-weight: 600; transition: all 0.2s ease;">
+                <div class="mt-12 p-10 bg-neutral-900 rounded-lg text-center border border-neutral-800 bg-gradient-to-br from-neutral-900 to-neutral-800">
+                    <h3 class="mb-4 text-white text-2xl font-bold">Download Model</h3>
+                    <p class="text-neutral-400 mb-8 text-base">Get the STL file for your own use or 3D printing.</p>
+                    <a href="{{ Storage::url($design->model_file) }}" download class="inline-flex items-center gap-2 py-4 px-8 text-lg bg-blue-600 border-none rounded-sm text-white no-underline font-semibold transition-all duration-200 hover:bg-blue-700 shadow-lg shadow-blue-900/20">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4" />
@@ -81,10 +69,8 @@
                 </div>
             @endif
 
-            <div style="margin-top: 4rem; text-align: center;">
-                <a href="{{ route('portfolio.index') }}"
-                    style="text-decoration: none; color: #999; font-size: 1rem; transition: color 0.2s ease; display: inline-flex; align-items: center; gap: 0.5rem;"
-                    onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#999'">
+            <div class="mt-16 text-center">
+                <a href="{{ route('portfolio.index') }}" class="inline-flex items-center gap-2 no-underline text-neutral-400 text-base transition-colors duration-200 hover:text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />

@@ -21,265 +21,25 @@
     @endif
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Instrument Sans', sans-serif;
-            background-color: #0f0f0f;
-            color: #e5e5e5;
-            line-height: 1.6;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            padding: 3rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .portfolio-card {
-            background: #1a1a1a;
-            border-radius: 2px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: 1px solid #2a2a2a;
-        }
-
-        .portfolio-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            border-color: #3a3a3a;
-        }
-
-        .portfolio-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .portfolio-card-content {
-            padding: 1.5rem;
-        }
-
-        .portfolio-card-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-            letter-spacing: 0.3px;
-        }
-
-        .portfolio-card-category {
-            display: inline-block;
-            background-color: #2a2a2a;
-            color: #999;
-            padding: 0.35rem 0.8rem;
-            border-radius: 2px;
-            font-size: 0.8rem;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 500;
-        }
-
-        .portfolio-card-description {
-            color: #999;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .btn-view {
-            display: inline-block;
-            background-color: transparent;
-            color: #e5e5e5;
-            padding: 0.5rem 1rem;
-            border: 1px solid #3a3a3a;
-            border-radius: 2px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            letter-spacing: 0.3px;
-        }
-
-        .btn-view:hover {
-            background-color: #1a1a1a;
-            border-color: #5a5a5a;
-            color: #ffffff;
-        }
-
-        header {
-            background-color: #0a0a0a;
-            border-bottom: 1px solid #2a2a2a;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-decoration: none;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #999;
-            margin-left: 2.5rem;
-            font-weight: 500;
-            transition: color 0.2s ease;
-            font-size: 0.95rem;
-            letter-spacing: 0.2px;
-        }
-
-        nav a:hover {
-            color: #ffffff;
-        }
-
-        .category-filters {
-            display: flex;
-            gap: 0.75rem;
-            padding: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 1400px;
-            margin: 0 auto;
-            border-bottom: 1px solid #2a2a2a;
-        }
-
-        .filter-btn {
-            background-color: transparent;
-            border: 1px solid #3a3a3a;
-            padding: 0.5rem 1.2rem;
-            border-radius: 2px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            color: #999;
-            font-size: 0.9rem;
-            letter-spacing: 0.3px;
-            text-transform: capitalize;
-        }
-
-        .filter-btn:hover {
-            border-color: #5a5a5a;
-            color: #e5e5e5;
-        }
-
-        .filter-btn.active {
-            background-color: #ffffff;
-            color: #0f0f0f;
-            border-color: #ffffff;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .hero {
-            background-color: #0a0a0a;
-            color: #e5e5e5;
-            padding: 5rem 2rem;
-            text-align: center;
-            border-bottom: 1px solid #2a2a2a;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            color: #ffffff;
-        }
-
-        .hero p {
-            font-size: 1.05rem;
-            opacity: 0.8;
-            max-width: 600px;
-            margin: 0 auto;
-            letter-spacing: 0.3px;
-        }
-
-        .model-viewer {
-            width: 100%;
-            height: 250px;
-            background: #1a1a1a;
-            border-radius: 2px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #2a2a2a;
-        }
-
-        .model-viewer canvas {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
+        /* Custom model viewer styles that might be hard to replicate with pure utility classes alone if dynamic */
         .model-viewer-label {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.6);
-            color: #999;
-            padding: 0.4rem 0.8rem;
-            border-radius: 2px;
-            font-size: 0.75rem;
-            pointer-events: none;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
             opacity: 0;
             transition: opacity 0.2s ease;
         }
-
         .model-viewer:hover .model-viewer-label {
             opacity: 1;
-        }
-
-        .model-viewer-loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #999;
-            font-size: 0.85rem;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 1rem;
-            border-radius: 2px;
-            pointer-events: none;
         }
     </style>
 </head>
 
-<body>
-    <header>
-        <div class="header-container">
-            <a href="{{ route('portfolio.index') }}" class="logo">Hugo's 3D Design Portfolio</a>
+<body class="bg-neutral-950 text-neutral-200 leading-relaxed font-sans antialiased">
+    <header class="bg-neutral-950 border-b border-neutral-800 sticky top-0 z-50">
+        <div class="max-w-[1400px] mx-auto px-8 py-6 flex justify-between items-center">
+            <a href="{{ route('portfolio.index') }}" class="text-xl font-bold text-white no-underline tracking-tighter">Hugo's 3D Design Portfolio</a>
             <nav>
-                <a href="{{ route('portfolio.index') }}">Home</a>
-                <a href="{{ route('pictures.index') }}">Pictures</a>
-                <a href="{{ route('portfolio.contact') }}">Contact</a>
+                <a href="{{ route('portfolio.index') }}" class="text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-white">Home</a>
+                <a href="{{ route('pictures.index') }}" class="text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-white">Pictures</a>
+                <a href="{{ route('portfolio.contact') }}" class="text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-white">Contact</a>
             </nav>
         </div>
     </header>
@@ -289,10 +49,10 @@
     </main>
 
 
-    <footer style="background-color: #1a1a1a; color: white; padding: 3rem 2rem; text-align: center;">
-        <div class="container">
+    <footer class="bg-neutral-900 text-white py-12 px-8 text-center">
+        <div class="max-w-[1400px] mx-auto">
             <p>&copy; {{ date('Y') }} Hugo's 3D Design Portfolio. All rights reserved.</p>
-            <p style="margin-top: 0.5rem; opacity: 0.7;">Showcasing premium 3D designs and visualizations.</p>
+            <p class="mt-2 opacity-70">Showcasing premium 3D designs and visualizations.</p>
         </div>
     </footer>
 
@@ -338,7 +98,7 @@
 
             createLoadingIndicator() {
                 const loader = document.createElement('div');
-                loader.className = 'model-viewer-loading';
+                loader.className = 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-neutral-400 text-sm bg-black/60 p-4 rounded-sm pointer-events-none';
                 loader.textContent = 'Loading 3D model...';
                 this.container.appendChild(loader);
                 this.loadingIndicator = loader;

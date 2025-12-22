@@ -3,12 +3,12 @@
 @section('title', 'Upload 3D Model')
 
 @section('content')
-<div style="max-width: 600px; margin: 0 auto; padding: 3rem 2rem;">
-    <h1 style="font-size: 2rem; margin-bottom: 2rem; color: #ffffff;">Upload 3D Model</h1>
+<div class="max-w-[600px] mx-auto py-12 px-8">
+    <h1 class="text-3xl mb-8 text-white">Upload 3D Model</h1>
 
     @if ($errors->any())
-        <div style="background-color: #3a1a1a; border: 1px solid #8a4444; color: #ffcccc; padding: 1rem; border-radius: 2px; margin-bottom: 2rem;">
-            <ul style="list-style: none; padding: 0; margin: 0;">
+        <div class="bg-red-900/40 border border-red-700 text-red-200 p-4 rounded-sm mb-8">
+            <ul class="list-none p-0 m-0">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -17,17 +17,17 @@
     @endif
 
     @if (session('success'))
-        <div style="background-color: #1a3a1a; border: 1px solid #44aa44; color: #ccffcc; padding: 1rem; border-radius: 2px; margin-bottom: 2rem;">
+        <div class="bg-green-900/40 border border-green-700 text-green-200 p-4 rounded-sm mb-8">
             {{ session('success') }}
         </div>
     @endif
 
-    <form action="{{ route('models.store') }}" method="POST" enctype="multipart/form-data" style="background-color: #1a1a1a; padding: 2rem; border-radius: 2px; border: 1px solid #2a2a2a;">
+    <form action="{{ route('models.store') }}" method="POST" enctype="multipart/form-data" class="bg-neutral-900 p-8 rounded-sm border border-neutral-800">
         @csrf
 
-        <div style="margin-bottom: 1.5rem;">
-            <label for="design_id" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #ffffff;">Select Design:</label>
-            <select name="design_id" id="design_id" required style="width: 100%; padding: 0.75rem; background-color: #2a2a2a; color: #e5e5e5; border: 1px solid #3a3a3a; border-radius: 2px; font-size: 1rem;">
+        <div class="mb-6">
+            <label for="design_id" class="block mb-2 font-medium text-white">Select Design:</label>
+            <select name="design_id" id="design_id" required class="w-full p-3 bg-neutral-800 text-neutral-200 border border-neutral-700 rounded-sm text-base">
                 <option value="">Choose a design...</option>
                 @foreach ($designs as $design)
                     <option value="{{ $design->id }}">{{ $design->title }}</option>
@@ -35,27 +35,27 @@
             </select>
         </div>
 
-        <div style="margin-bottom: 2rem;">
-            <label for="model_file" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #ffffff;">3D Model (.STL file):</label>
-            <input type="file" name="model_file" id="model_file" accept=".stl" required style="width: 100%; padding: 0.75rem; background-color: #2a2a2a; color: #e5e5e5; border: 1px solid #3a3a3a; border-radius: 2px;">
-            <p style="font-size: 0.85rem; color: #999; margin-top: 0.5rem;">Maximum file size: 100MB. Supported format: .STL</p>
+        <div class="mb-8">
+            <label for="model_file" class="block mb-2 font-medium text-white">3D Model (.STL file):</label>
+            <input type="file" name="model_file" id="model_file" accept=".stl" required class="w-full p-3 bg-neutral-800 text-neutral-200 border border-neutral-700 rounded-sm">
+            <p class="text-sm text-neutral-400 mt-2">Maximum file size: 100MB. Supported format: .STL</p>
         </div>
 
-        <button type="submit" style="width: 100%; padding: 0.75rem; background-color: #ffffff; color: #0f0f0f; border: none; border-radius: 2px; font-weight: 600; cursor: pointer; font-size: 1rem; transition: background-color 0.2s ease;" onmouseover="this.style.backgroundColor='#e5e5e5'" onmouseout="this.style.backgroundColor='#ffffff'">
+        <button type="submit" class="w-full p-3 bg-white text-neutral-950 border-none rounded-sm font-semibold cursor-pointer text-base transition-colors duration-200 hover:bg-neutral-200">
             Upload Model
         </button>
     </form>
 
-    <div style="margin-top: 3rem; padding: 2rem; background-color: #1a1a1a; border-radius: 2px; border: 1px solid #2a2a2a;">
-        <h3 style="margin-bottom: 1rem; color: #ffffff;">Recent Designs</h3>
-        <div style="display: flex; flex-direction: column; gap: 1rem;">
+    <div class="mt-12 p-8 bg-neutral-900 rounded-sm border border-neutral-800">
+        <h3 class="mb-4 text-white">Recent Designs</h3>
+        <div class="flex flex-col gap-4">
             @foreach ($designs as $design)
-                <div style="padding: 1rem; background-color: #0f0f0f; border-radius: 2px; border: 1px solid #2a2a2a; display: flex; justify-content: space-between; align-items: center;">
+                <div class="p-4 bg-neutral-950 rounded-sm border border-neutral-800 flex justify-between items-center">
                     <div>
-                        <p style="font-weight: 500; color: #ffffff; margin-bottom: 0.25rem;">{{ $design->title }}</p>
-                        <p style="font-size: 0.85rem; color: #999;">{{ $design->category }}</p>
+                        <p class="font-medium text-white mb-1">{{ $design->title }}</p>
+                        <p class="text-sm text-neutral-400">{{ $design->category }}</p>
                         @if ($design->model_file)
-                            <p style="font-size: 0.85rem; color: #4a4; margin-top: 0.25rem;">✓ Has 3D Model</p>
+                            <p class="text-sm text-green-500 mt-1">✓ Has 3D Model</p>
                         @endif
                     </div>
                 </div>
