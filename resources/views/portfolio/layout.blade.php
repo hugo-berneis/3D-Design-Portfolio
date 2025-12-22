@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Portfolio') - {{ config('app.name', 'Design Portfolio') }}</title>
+    <title>Hugo Berneis Design Portfolio</title>
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link
