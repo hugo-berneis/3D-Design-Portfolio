@@ -33,20 +33,20 @@
     </style>
 </head>
 
-<body class="bg-neutral-950 text-neutral-200 leading-relaxed font-sans antialiased">
-    <header class="bg-neutral-950 border-b border-neutral-800 sticky top-0 z-50">
+<body class="bg-white text-neutral-800 dark:bg-neutral-950 dark:text-neutral-200 leading-relaxed font-sans antialiased transition-colors duration-300">
+    <header class="bg-white/80 dark:bg-neutral-950/80 border-b border-neutral-200 dark:border-neutral-800 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-[1400px] mx-auto px-8 py-6 flex justify-between items-center">
             <a href="{{ route('portfolio.index') }}"
-                class="text-xl font-bold text-white no-underline tracking-tighter">Hugo's 3D Design Portfolio</a>
+                class="text-xl font-bold text-neutral-900 dark:text-white no-underline tracking-tighter">Hugo's 3D Design Portfolio</a>
             <nav>
                 <a href="{{ route('portfolio.index') }}"
-                    class="text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-white">Home</a>
+                    class="text-neutral-500 dark:text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-neutral-900 dark:hover:text-white">Home</a>
                 <a href="{{ route('pictures.index') }}"
-                    class="text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-white">Pictures</a>
+                    class="text-neutral-500 dark:text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-neutral-900 dark:hover:text-white">Pictures</a>
                 <a href="{{ route('portfolio.cv') }}"
-                    class="text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-white">CV</a>
+                    class="text-neutral-500 dark:text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-neutral-900 dark:hover:text-white">CV</a>
                 <a href="{{ route('portfolio.contact') }}"
-                    class="text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-white">Contact</a>
+                    class="text-neutral-500 dark:text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-neutral-900 dark:hover:text-white">Contact</a>
             </nav>
         </div>
     </header>
@@ -56,7 +56,7 @@
     </main>
 
 
-    <footer class="bg-neutral-900 text-white py-12 px-8 text-center">
+    <footer class="bg-neutral-50 dark:bg-neutral-900 text-neutral-600 dark:text-white py-12 px-8 text-center border-t border-neutral-200 dark:border-transparent">
         <div class="max-w-[1400px] mx-auto">
             <p>&copy; {{ date('Y') }} Hugo's 3D Design Portfolio. All rights reserved.</p>
             <p class="mt-2 opacity-70">Showcasing premium 3D designs and visualizations.</p>
@@ -125,7 +125,7 @@
                 const height = this.container.clientHeight;
 
                 this.scene = new THREE.Scene();
-                this.scene.background = new THREE.Color(0x1a1a1a);
+                this.updateThemeColors();
 
                 this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
                 this.camera.position.set(0, 0, 100);
@@ -135,24 +135,29 @@
                 });
                 this.renderer.setSize(width, height);
                 this.renderer.setPixelRatio(window.devicePixelRatio);
-                this.renderer.setClearColor(0x1a1a1a, 1);
+                this.updateThemeColors(); // Apply to renderer too
                 this.container.appendChild(this.renderer.domElement);
 
-                this.ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+                // Listen for theme changes
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                    this.updateThemeColors();
+                });
+
+                this.ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
                 this.scene.add(this.ambientLight);
 
-                const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.5);
-                this.scene.add(hemisphereLight);
+                this.hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.0);
+                this.scene.add(this.hemiLight);
 
-                this.keyLight = new THREE.DirectionalLight(0xffffff, 1.0);
+                this.keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
                 this.keyLight.position.set(50, 50, 50);
                 this.scene.add(this.keyLight);
 
-                this.fillLight = new THREE.DirectionalLight(0xffffff, 0);
+                this.fillLight = new THREE.DirectionalLight(0xffffff, 0.3);
                 this.fillLight.position.set(-50, 0, 50);
                 this.scene.add(this.fillLight);
 
-                this.rimLight = new THREE.DirectionalLight(0xffffff, 0.7);
+                this.rimLight = new THREE.DirectionalLight(0xffffff, 0.8);
                 this.rimLight.position.set(0, 50, -50);
                 this.scene.add(this.rimLight);
 
@@ -186,6 +191,7 @@
                         });
 
                         this.model = new THREE.Mesh(geometry, material);
+                        this.updateThemeColors(); // Apply theme-aware colors and lighting
                         this.scene.add(this.model);
 
                         const boundingBox = new THREE.Box3().setFromObject(this.model);
@@ -233,6 +239,42 @@
                         }
                     }
                 );
+            }
+
+            updateThemeColors() {
+                const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const bgColor = isDark ? 0x0a0a0a : 0xf9fafb; // neutral-950 vs neutral-50
+
+                if (this.scene) {
+                    this.scene.background = new THREE.Color(bgColor);
+                }
+                if (this.renderer) {
+                    this.renderer.setClearColor(bgColor, 1);
+                }
+
+                // Adjust light intensities for balanced contrast and brightness in dark mode
+                if (this.ambientLight) {
+                    this.ambientLight.intensity = isDark ? 0.27 : 0.4;
+                }
+                if (this.hemiLight) {
+                    this.hemiLight.intensity = isDark ? 0.55 : 0.8;
+                }
+                if (this.keyLight) {
+                    this.keyLight.intensity = isDark ? 0.9 : 0.9;
+                }
+                if (this.fillLight) {
+                    this.fillLight.intensity = isDark ? 0.15 : 0.2;
+                }
+                if (this.rimLight) {
+                    this.rimLight.intensity = isDark ? 0.5 : 0.6;
+                }
+
+                if (this.model && this.model.material) {
+                    // Middle ground color and roughness
+                    this.model.material.color.set(isDark ? 0xaaaaaa : 0x595959);
+                    this.model.material.roughness = isDark ? 0.5 : 0.4;
+                    this.model.material.needsUpdate = true;
+                }
             }
 
             onMouseMove(event) {

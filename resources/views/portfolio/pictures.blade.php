@@ -3,11 +3,11 @@
 @section('title', 'Pictures')
 
 @section('content')
-    <div class="max-w-[1400px] mx-auto py-12 px-8">
+    <div class="max-w-[1400px] mx-auto py-12 px-8 text-neutral-800 dark:text-neutral-200">
         <div class="flex justify-between items-center mb-12">
             <div>
-                <h1 class="text-4xl text-white mb-2 font-bold tracking-tight">Pictures</h1>
-                <p class="text-neutral-400 text-lg">Screenshots and photos of models.</p>
+                <h1 class="text-4xl text-neutral-900 dark:text-white mb-2 font-bold tracking-tight">Pictures</h1>
+                <p class="text-neutral-600 dark:text-neutral-400 text-lg">Screenshots and photos of models.</p>
             </div>
             @if (request()->has('admin'))
                 <button
@@ -18,7 +18,7 @@
             @endif
         </div>
         @if ($errors->any())
-            <div class="bg-red-500/10 border border-red-500 text-red-500 p-4 rounded-sm mb-8">
+            <div class="bg-red-500/10 border border-red-500 text-red-600 dark:text-red-400 p-4 rounded-sm mb-8">
                 <ul class="m-0 pl-6">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -28,59 +28,61 @@
         @endif
 
         @if (session('error'))
-            <div class="bg-red-500/10 border border-red-500 text-red-500 p-4 rounded-sm mb-8">
+            <div class="bg-red-500/10 border border-red-500 text-red-600 dark:text-red-400 p-4 rounded-sm mb-8">
                 {{ session('error') }}
             </div>
         @endif
 
         @if (session('success'))
-            <div class="bg-green-500/10 border border-green-500 text-green-500 p-4 rounded-sm mb-8">
+            <div class="bg-green-500/10 border border-green-500 text-green-600 dark:text-green-400 p-4 rounded-sm mb-8">
                 {{ session('success') }}
             </div>
         @endif
 
         <div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6">
             @forelse($pictures as $picture)
-                <div class="bg-neutral-900 rounded-sm overflow-hidden shadow-sm transition-all duration-200 cursor-pointer border border-neutral-800 hover:shadow-lg hover:border-neutral-700 group portfolio-card"
+                <div class="bg-white dark:bg-neutral-900 rounded-sm overflow-hidden shadow-sm transition-all duration-200 cursor-pointer border border-neutral-200 dark:border-neutral-800 hover:shadow-lg hover:border-neutral-400 dark:hover:border-neutral-700 group portfolio-card"
                     data-id="{{ $picture->id }}"
                     @if (Str::endsWith($picture->image_path, '.pdf')) onclick="window.open('{{ Storage::url($picture->image_path) }}', '_blank')" @else
                         onclick="openLightbox('{{ Storage::url($picture->image_path) }}', '{{ addslashes($picture->title) }}', '{{ addslashes($picture->description) }}')" @endif>
                     @if (Str::endsWith($picture->image_path, '.pdf'))
-                        <div class="h-[200px] flex flex-col items-center justify-center bg-neutral-950 text-red-500">
+                        <div class="h-[200px] flex flex-col items-center justify-center bg-neutral-100 dark:bg-neutral-950 text-red-500">
                             <span class="text-5xl mb-2">PDF</span>
-                            <span class="text-xs text-neutral-400">Click to view document</span>
+                            <span class="text-xs text-neutral-500 dark:text-neutral-400">Click to view document</span>
                         </div>
                     @else
                         <img src="{{ Storage::url($picture->image_path) }}" alt="{{ $picture->title }}"
-                            class="cursor-zoom-in w-full h-[250px] object-cover block">
+                            class="cursor-zoom-in w-full h-[250px] border-b border-neutral-200 dark:border-neutral-800 object-cover block">
                     @endif
                     <div class="p-6">
-                        <h3 class="text-base font-semibold mb-2 text-white tracking-wide">{{ $picture->title }}</h3>
+                        <h3 class="text-base font-semibold mb-2 text-neutral-900 dark:text-white tracking-wide">{{ $picture->title }}</h3>
                         @if ($picture->description)
-                            <p class="text-neutral-400 text-sm leading-relaxed mb-4">{{ $picture->description }}</p>
+                            <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-4">{{ $picture->description }}</p>
                         @endif
                         @if (request()->has('admin'))
-                            <form action="{{ route('pictures.destroy', $picture) }}" method="POST" class="mt-4">
-                                @csrf
-                                @method('DELETE')
-                                @if (request()->has('admin'))
-                                    <input type="hidden" name="admin" value="{{ request('admin') }}">
-                                @endif
-                                <button type="submit"
-                                    class="bg-transparent border-none text-red-500 cursor-pointer text-xs p-0 hover:text-red-400"
-                                    onclick="return confirm('Are you sure?')">Delete</button>
-                            </form>
-                            <button
-                                onclick="event.stopPropagation(); openEditModal('{{ $picture->id }}', '{{ addslashes($picture->title) }}', '{{ addslashes($picture->description) }}')"
-                                class="bg-transparent border-none text-blue-600 cursor-pointer text-xs p-0 mt-2 block hover:text-blue-500">
-                                Edit
-                            </button>
+                            <div class="flex gap-4 mt-4 items-center">
+                                <form action="{{ route('pictures.destroy', $picture) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    @if (request()->has('admin'))
+                                        <input type="hidden" name="admin" value="{{ request('admin') }}">
+                                    @endif
+                                    <button type="submit"
+                                        class="bg-transparent border-none text-red-500 cursor-pointer text-xs p-0 hover:text-red-400"
+                                        onclick="return confirm('Are you sure?')">Delete</button>
+                                </form>
+                                <button
+                                    onclick="event.stopPropagation(); openEditModal('{{ $picture->id }}', '{{ addslashes($picture->title) }}', '{{ addslashes($picture->description) }}')"
+                                    class="bg-transparent border-none text-blue-600 cursor-pointer text-xs p-0 hover:text-blue-500">
+                                    Edit
+                                </button>
+                            </div>
                         @endif
                     </div>
                 </div>
             @empty
                 <div
-                    class="col-span-full text-center p-20 bg-neutral-900 border border-dashed border-neutral-800 rounded-lg">
+                    class="col-span-full text-center p-20 bg-neutral-50 dark:bg-neutral-900 border border-dashed border-neutral-200 dark:border-neutral-800 rounded-lg">
                     <p class="text-neutral-500 text-lg">No pictures uploaded yet.</p>
                 </div>
             @endforelse
@@ -89,12 +91,12 @@
 
     <div id="upload-modal"
         class="hidden fixed inset-0 w-full h-full bg-black/80 z-[2000] items-center justify-center backdrop-blur-sm">
-        <div class="bg-neutral-900 p-10 rounded-lg w-full max-w-[500px] border border-neutral-800 relative">
+        <div class="bg-white dark:bg-neutral-900 p-10 rounded-lg w-full max-w-[500px] border border-neutral-200 dark:border-neutral-800 relative shadow-2xl">
             <button
                 onclick="document.getElementById('upload-modal').classList.add('hidden'); document.getElementById('upload-modal').classList.remove('flex')"
-                class="absolute top-4 right-4 bg-transparent border-none text-neutral-500 text-2xl cursor-pointer hover:text-white">&times;</button>
+                class="absolute top-4 right-4 bg-transparent border-none text-neutral-400 text-2xl cursor-pointer hover:text-neutral-900 dark:hover:text-white transition-colors">&times;</button>
 
-            <h2 class="text-white mb-6 text-2xl font-bold">Upload Picture</h2>
+            <h2 class="text-neutral-900 dark:text-white mb-6 text-2xl font-bold">Upload Picture</h2>
 
             <form action="{{ route('pictures.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -102,21 +104,21 @@
                     <input type="hidden" name="admin" value="{{ request('admin') }}">
                 @endif
                 <div class="mb-6">
-                    <label class="block text-neutral-400 mb-2 text-sm font-medium">Title</label>
+                    <label class="block text-neutral-600 dark:text-neutral-400 mb-2 text-sm font-medium">Title</label>
                     <input type="text" name="title" required
-                        class="w-full bg-neutral-950 border border-neutral-800 text-white p-3 rounded-sm outline-none transition-colors duration-200 focus:border-blue-600">
+                        class="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white p-3 rounded-sm outline-none transition-colors duration-200 focus:border-blue-600">
                 </div>
 
                 <div class="mb-6">
-                    <label class="block text-neutral-400 mb-2 text-sm font-medium">Image or PDF</label>
+                    <label class="block text-neutral-600 dark:text-neutral-400 mb-2 text-sm font-medium">Image or PDF</label>
                     <input type="file" name="image" required accept=".jpeg,.jpg,.png,.gif,.svg,.pdf"
-                        class="w-full text-neutral-400 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-sm file:border-0 file:text-sm file:font-semibold file:bg-neutral-800 file:text-white hover:file:bg-neutral-700">
+                        class="w-full text-neutral-500 dark:text-neutral-400 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-sm file:border-0 file:text-sm file:font-semibold file:bg-neutral-100 dark:file:bg-neutral-800 file:text-neutral-700 dark:file:text-white hover:file:bg-neutral-200 dark:hover:file:bg-neutral-700">
                 </div>
 
                 <div class="mb-8">
-                    <label class="block text-neutral-400 mb-2 text-sm font-medium">Description (Optional)</label>
+                    <label class="block text-neutral-600 dark:text-neutral-400 mb-2 text-sm font-medium">Description (Optional)</label>
                     <textarea name="description" rows="3"
-                        class="w-full bg-neutral-950 border border-neutral-800 text-white p-3 rounded-sm outline-none transition-colors duration-200 focus:border-blue-600"></textarea>
+                        class="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white p-3 rounded-sm outline-none transition-colors duration-200 focus:border-blue-600"></textarea>
                 </div>
 
                 <button type="submit"
@@ -129,12 +131,12 @@
     <!-- Edit Modal -->
     <div id="edit-modal"
         class="hidden fixed inset-0 w-full h-full bg-black/80 z-[2000] items-center justify-center backdrop-blur-sm">
-        <div class="bg-neutral-900 p-10 rounded-lg w-full max-w-[500px] border border-neutral-800 relative">
+        <div class="bg-white dark:bg-neutral-900 p-10 rounded-lg w-full max-w-[500px] border border-neutral-200 dark:border-neutral-800 relative shadow-2xl">
             <button
                 onclick="document.getElementById('edit-modal').classList.add('hidden'); document.getElementById('edit-modal').classList.remove('flex')"
-                class="absolute top-4 right-4 bg-transparent border-none text-neutral-500 text-2xl cursor-pointer hover:text-white">&times;</button>
+                class="absolute top-4 right-4 bg-transparent border-none text-neutral-400 text-2xl cursor-pointer hover:text-neutral-900 dark:hover:text-white transition-colors">&times;</button>
 
-            <h2 class="text-white mb-6 text-2xl font-bold">Edit Picture</h2>
+            <h2 class="text-neutral-900 dark:text-white mb-6 text-2xl font-bold">Edit Picture</h2>
 
             <form id="edit-form" action="" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -143,21 +145,21 @@
                     <input type="hidden" name="admin" value="{{ request('admin') }}">
                 @endif
                 <div class="mb-6">
-                    <label class="block text-neutral-400 mb-2 text-sm font-medium">Title</label>
+                    <label class="block text-neutral-600 dark:text-neutral-400 mb-2 text-sm font-medium">Title</label>
                     <input type="text" id="edit-title" name="title" required
-                        class="w-full bg-neutral-950 border border-neutral-800 text-white p-3 rounded-sm outline-none transition-colors duration-200 focus:border-blue-600">
+                        class="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white p-3 rounded-sm outline-none transition-colors duration-200 focus:border-blue-600">
                 </div>
 
                 <div class="mb-6">
-                    <label class="block text-neutral-400 mb-2 text-sm font-medium">Replace Image or PDF (Optional)</label>
+                    <label class="block text-neutral-600 dark:text-neutral-400 mb-2 text-sm font-medium">Replace Image or PDF (Optional)</label>
                     <input type="file" name="image" accept=".jpeg,.jpg,.png,.gif,.svg,.pdf"
-                        class="w-full text-neutral-400 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-sm file:border-0 file:text-sm file:font-semibold file:bg-neutral-800 file:text-white hover:file:bg-neutral-700">
+                        class="w-full text-neutral-500 dark:text-neutral-400 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-sm file:border-0 file:text-sm file:font-semibold file:bg-neutral-100 dark:file:bg-neutral-800 file:text-neutral-700 dark:file:text-white hover:file:bg-neutral-200 dark:hover:file:bg-neutral-700">
                 </div>
 
                 <div class="mb-8">
-                    <label class="block text-neutral-400 mb-2 text-sm font-medium">Description (Optional)</label>
+                    <label class="block text-neutral-600 dark:text-neutral-400 mb-2 text-sm font-medium">Description (Optional)</label>
                     <textarea id="edit-description" name="description" rows="3"
-                        class="w-full bg-neutral-950 border border-neutral-800 text-white p-3 rounded-sm outline-none transition-colors duration-200 focus:border-blue-600"></textarea>
+                        class="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white p-3 rounded-sm outline-none transition-colors duration-200 focus:border-blue-600"></textarea>
                 </div>
 
                 <button type="submit"
