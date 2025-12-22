@@ -271,7 +271,7 @@
 
                 if (this.model && this.model.material) {
                     // Middle ground color and roughness
-                    this.model.material.color.set(isDark ? 0xaaaaaa : 0x595959);
+                    this.model.material.color.set(isDark ? 0xaaaaaa : 0x707070);
                     this.model.material.roughness = isDark ? 0.5 : 0.4;
                     this.model.material.needsUpdate = true;
                 }
