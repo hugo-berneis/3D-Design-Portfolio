@@ -3,23 +3,23 @@
 @section('title', 'Pictures')
 
 @section('content')
-    <div style="max-width: 1400px; margin: 0 auto; padding: 3rem 2rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+    <div class="max-w-[1400px] mx-auto py-12 px-8 text-neutral-800 dark:text-neutral-200">
+        <div class="flex justify-between items-center mb-12">
             <div>
-                <h1 style="font-size: 2.5rem; color: #ffffff; margin-bottom: 0.5rem;">Pictures</h1>
-                <p style="color: #999; font-size: 1.1rem;">Screenshots and photos of models.</p>
+                <h1 class="text-4xl text-neutral-900 dark:text-white mb-2 font-bold tracking-tight">Pictures</h1>
+                <p class="text-neutral-600 dark:text-neutral-400 text-lg">Screenshots and photos of models.</p>
             </div>
-            @if(request()->has('admin'))
-                <button onclick="document.getElementById('upload-modal').style.display='flex'"
-                    style="background: #2563eb; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; font-weight: 600; transition: all 0.2s ease;"
-                    onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">
+            @if (request()->has('admin'))
+                <button
+                    onclick="document.getElementById('upload-modal').classList.remove('hidden'); document.getElementById('upload-modal').classList.add('flex')"
+                    class="bg-blue-600 text-white border-none py-3 px-6 rounded-sm cursor-pointer font-semibold transition-all duration-200 hover:bg-blue-700">
                     Upload Picture
                 </button>
             @endif
         </div>
         @if ($errors->any())
-            <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444; padding: 1rem; border-radius: 4px; margin-bottom: 2rem;">
-                <ul style="margin: 0; padding-left: 1.5rem;">
+            <div class="bg-red-500/10 border border-red-500 text-red-600 dark:text-red-400 p-4 rounded-sm mb-8">
+                <ul class="m-0 pl-6">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
@@ -27,106 +27,102 @@
             </div>
         @endif
 
-        @if(session('error'))
-            <div
-                style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444; padding: 1rem; border-radius: 4px; margin-bottom: 2rem;">
+        @if (session('error'))
+            <div class="bg-red-500/10 border border-red-500 text-red-600 dark:text-red-400 p-4 rounded-sm mb-8">
                 {{ session('error') }}
             </div>
         @endif
 
-        @if(session('success'))
-            <div
-                style="background: rgba(34, 197, 94, 0.1); border: 1px solid #22c55e; color: #22c55e; padding: 1rem; border-radius: 4px; margin-bottom: 2rem;">
+        @if (session('success'))
+            <div class="bg-green-500/10 border border-green-500 text-green-600 dark:text-green-400 p-4 rounded-sm mb-8">
                 {{ session('success') }}
             </div>
         @endif
 
-        <div class="portfolio-grid">
+        <div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6">
             @forelse($pictures as $picture)
-                <div class="portfolio-card" data-id="{{ $picture->id }}" @if(Str::endsWith($picture->image_path, '.pdf'))
-                onclick="window.open('{{ Storage::url($picture->image_path) }}', '_blank')" @else
-                        onclick="openLightbox('{{ Storage::url($picture->image_path) }}', '{{ addslashes($picture->title) }}', '{{ addslashes($picture->description) }}')"
-                    @endif>
-                    @if(Str::endsWith($picture->image_path, '.pdf'))
-                        <div
-                            style="height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #0f0f0f; color: #ff4444;">
-                            <span style="font-size: 3rem; margin-bottom: 0.5rem;">PDF</span>
-                            <span style="font-size: 0.8rem; color: #999;">Click to view document</span>
+                <div class="bg-white dark:bg-neutral-900 rounded-sm overflow-hidden shadow-sm transition-all duration-200 cursor-pointer border border-neutral-200 dark:border-neutral-800 hover:shadow-lg hover:border-neutral-400 dark:hover:border-neutral-700 group portfolio-card"
+                    data-id="{{ $picture->id }}"
+                    @if (Str::endsWith($picture->image_path, '.pdf')) onclick="window.open('{{ Storage::url($picture->image_path) }}', '_blank')" @else
+                        onclick="openLightbox('{{ Storage::url($picture->image_path) }}', '{{ addslashes($picture->title) }}', '{{ addslashes($picture->description) }}')" @endif>
+                    @if (Str::endsWith($picture->image_path, '.pdf'))
+                        <div class="h-[200px] flex flex-col items-center justify-center bg-neutral-100 dark:bg-neutral-950 text-red-500">
+                            <span class="text-5xl mb-2">PDF</span>
+                            <span class="text-xs text-neutral-500 dark:text-neutral-400">Click to view document</span>
                         </div>
                     @else
-                        <img src="{{ Storage::url($picture->image_path) }}" alt="{{ $picture->title }}" style="cursor: zoom-in;">
+                        <img src="{{ Storage::url($picture->image_path) }}" alt="{{ $picture->title }}"
+                            class="cursor-zoom-in w-full h-[250px] border-b border-neutral-200 dark:border-neutral-800 object-cover block">
                     @endif
-                    <div class="portfolio-card-content">
-                        <h3 class="portfolio-card-title">{{ $picture->title }}</h3>
-                        @if($picture->description)
-                            <p class="portfolio-card-description">{{ $picture->description }}</p>
+                    <div class="p-6">
+                        <h3 class="text-base font-semibold mb-2 text-neutral-900 dark:text-white tracking-wide">{{ $picture->title }}</h3>
+                        @if ($picture->description)
+                            <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-4">{{ $picture->description }}</p>
                         @endif
-                        @if(request()->has('admin'))
-                            <form action="{{ route('pictures.destroy', $picture) }}" method="POST" style="margin-top: 1rem;">
-                                @csrf
-                                @method('DELETE')
-                                @if(request()->has('admin'))
-                                    <input type="hidden" name="admin" value="{{ request('admin') }}">
-                                @endif
-                                <button type="submit"
-                                    style="background: none; border: none; color: #ff4444; cursor: pointer; font-size: 0.8rem; padding: 0;"
-                                    onclick="return confirm('Are you sure?')">Delete</button>
-                            </form>
-                            <button
-                                onclick="event.stopPropagation(); openEditModal('{{ $picture->id }}', '{{ addslashes($picture->title) }}', '{{ addslashes($picture->description) }}')"
-                                style="background: none; border: none; color: #2563eb; cursor: pointer; font-size: 0.8rem; padding: 0; margin-top: 0.5rem; display: block;">
-                                Edit
-                            </button>
+                        @if (request()->has('admin'))
+                            <div class="flex gap-4 mt-4 items-center">
+                                <form action="{{ route('pictures.destroy', $picture) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    @if (request()->has('admin'))
+                                        <input type="hidden" name="admin" value="{{ request('admin') }}">
+                                    @endif
+                                    <button type="submit"
+                                        class="bg-transparent border-none text-red-500 cursor-pointer text-xs p-0 hover:text-red-400"
+                                        onclick="return confirm('Are you sure?')">Delete</button>
+                                </form>
+                                <button
+                                    onclick="event.stopPropagation(); openEditModal('{{ $picture->id }}', '{{ addslashes($picture->title) }}', '{{ addslashes($picture->description) }}')"
+                                    class="bg-transparent border-none text-blue-600 cursor-pointer text-xs p-0 hover:text-blue-500">
+                                    Edit
+                                </button>
+                            </div>
                         @endif
                     </div>
                 </div>
             @empty
                 <div
-                    style="grid-column: 1 / -1; text-align: center; padding: 5rem; background: #1a1a1a; border: 1px dashed #333; border-radius: 8px;">
-                    <p style="color: #666; font-size: 1.1rem;">No pictures uploaded yet.</p>
+                    class="col-span-full text-center p-20 bg-neutral-50 dark:bg-neutral-900 border border-dashed border-neutral-200 dark:border-neutral-800 rounded-lg">
+                    <p class="text-neutral-500 text-lg">No pictures uploaded yet.</p>
                 </div>
             @endforelse
         </div>
     </div>
 
     <div id="upload-modal"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
-        <div
-            style="background: #1a1a1a; padding: 2.5rem; border-radius: 8px; width: 100%; max-width: 500px; border: 1px solid #333; position: relative;">
-            <button onclick="document.getElementById('upload-modal').style.display='none'"
-                style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #999; font-size: 1.5rem; cursor: pointer;">&times;</button>
+        class="hidden fixed inset-0 w-full h-full bg-black/80 z-[2000] items-center justify-center backdrop-blur-sm">
+        <div class="bg-white dark:bg-neutral-900 p-10 rounded-lg w-full max-w-[500px] border border-neutral-200 dark:border-neutral-800 relative shadow-2xl">
+            <button
+                onclick="document.getElementById('upload-modal').classList.add('hidden'); document.getElementById('upload-modal').classList.remove('flex')"
+                class="absolute top-4 right-4 bg-transparent border-none text-neutral-400 text-2xl cursor-pointer hover:text-neutral-900 dark:hover:text-white transition-colors">&times;</button>
 
-            <h2 style="color: #fff; margin-bottom: 1.5rem; font-size: 1.5rem;">Upload Picture</h2>
+            <h2 class="text-neutral-900 dark:text-white mb-6 text-2xl font-bold">Upload Picture</h2>
 
             <form action="{{ route('pictures.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @if(request()->has('admin'))
+                @if (request()->has('admin'))
                     <input type="hidden" name="admin" value="{{ request('admin') }}">
                 @endif
-                <div style="margin-bottom: 1.5rem;">
-                    <label style="display: block; color: #999; margin-bottom: 0.5rem; font-size: 0.9rem;">Title</label>
+                <div class="mb-6">
+                    <label class="block text-neutral-600 dark:text-neutral-400 mb-2 text-sm font-medium">Title</label>
                     <input type="text" name="title" required
-                        style="width: 100%; background: #0f0f0f; border: 1px solid #333; color: #fff; padding: 0.8rem; border-radius: 4px; outline: none; transition: border-color 0.2s;"
-                        onfocus="this.style.borderColor='#2563eb'" onblur="this.style.borderColor='#333'">
+                        class="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white p-3 rounded-sm outline-none transition-colors duration-200 focus:border-blue-600">
                 </div>
 
-                <div style="margin-bottom: 1.5rem;">
-                    <label style="display: block; color: #999; margin-bottom: 0.5rem; font-size: 0.9rem;">Image or PDF</label>
+                <div class="mb-6">
+                    <label class="block text-neutral-600 dark:text-neutral-400 mb-2 text-sm font-medium">Image or PDF</label>
                     <input type="file" name="image" required accept=".jpeg,.jpg,.png,.gif,.svg,.pdf"
-                        style="width: 100%; color: #999; font-size: 0.9rem;">
+                        class="w-full text-neutral-500 dark:text-neutral-400 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-sm file:border-0 file:text-sm file:font-semibold file:bg-neutral-100 dark:file:bg-neutral-800 file:text-neutral-700 dark:file:text-white hover:file:bg-neutral-200 dark:hover:file:bg-neutral-700">
                 </div>
 
-                <div style="margin-bottom: 2rem;">
-                    <label style="display: block; color: #999; margin-bottom: 0.5rem; font-size: 0.9rem;">Description
-                        (Optional)</label>
+                <div class="mb-8">
+                    <label class="block text-neutral-600 dark:text-neutral-400 mb-2 text-sm font-medium">Description (Optional)</label>
                     <textarea name="description" rows="3"
-                        style="width: 100%; background: #0f0f0f; border: 1px solid #333; color: #fff; padding: 0.8rem; border-radius: 4px; outline: none; transition: border-color 0.2s;"
-                        onfocus="this.style.borderColor='#2563eb'" onblur="this.style.borderColor='#333'"></textarea>
+                        class="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white p-3 rounded-sm outline-none transition-colors duration-200 focus:border-blue-600"></textarea>
                 </div>
 
                 <button type="submit"
-                    style="width: 100%; background: #2563eb; color: white; border: none; padding: 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; transition: all 0.2s ease;"
-                    onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">
+                    class="w-full bg-blue-600 text-white border-none p-4 rounded-sm cursor-pointer font-semibold transition-all duration-200 hover:bg-blue-700">
                     Upload
                 </button>
             </form>
@@ -134,60 +130,56 @@
     </div>
     <!-- Edit Modal -->
     <div id="edit-modal"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
-        <div
-            style="background: #1a1a1a; padding: 2.5rem; border-radius: 8px; width: 100%; max-width: 500px; border: 1px solid #333; position: relative;">
-            <button onclick="document.getElementById('edit-modal').style.display='none'"
-                style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #999; font-size: 1.5rem; cursor: pointer;">&times;</button>
+        class="hidden fixed inset-0 w-full h-full bg-black/80 z-[2000] items-center justify-center backdrop-blur-sm">
+        <div class="bg-white dark:bg-neutral-900 p-10 rounded-lg w-full max-w-[500px] border border-neutral-200 dark:border-neutral-800 relative shadow-2xl">
+            <button
+                onclick="document.getElementById('edit-modal').classList.add('hidden'); document.getElementById('edit-modal').classList.remove('flex')"
+                class="absolute top-4 right-4 bg-transparent border-none text-neutral-400 text-2xl cursor-pointer hover:text-neutral-900 dark:hover:text-white transition-colors">&times;</button>
 
-            <h2 style="color: #fff; margin-bottom: 1.5rem; font-size: 1.5rem;">Edit Picture</h2>
+            <h2 class="text-neutral-900 dark:text-white mb-6 text-2xl font-bold">Edit Picture</h2>
 
             <form id="edit-form" action="" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
-                @if(request()->has('admin'))
+                @if (request()->has('admin'))
                     <input type="hidden" name="admin" value="{{ request('admin') }}">
                 @endif
-                <div style="margin-bottom: 1.5rem;">
-                    <label style="display: block; color: #999; margin-bottom: 0.5rem; font-size: 0.9rem;">Title</label>
+                <div class="mb-6">
+                    <label class="block text-neutral-600 dark:text-neutral-400 mb-2 text-sm font-medium">Title</label>
                     <input type="text" id="edit-title" name="title" required
-                        style="width: 100%; background: #0f0f0f; border: 1px solid #333; color: #fff; padding: 0.8rem; border-radius: 4px; outline: none; transition: border-color 0.2s;"
-                        onfocus="this.style.borderColor='#2563eb'" onblur="this.style.borderColor='#333'">
+                        class="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white p-3 rounded-sm outline-none transition-colors duration-200 focus:border-blue-600">
                 </div>
 
-                <div style="margin-bottom: 1.5rem;">
-                    <label style="display: block; color: #999; margin-bottom: 0.5rem; font-size: 0.9rem;">Replace Image or PDF (Optional)</label>
-                    <input type="file" name="image" accept=".jpeg,.jpg,.png,.gif,.svg,.pdf" style="width: 100%; color: #999; font-size: 0.9rem;">
+                <div class="mb-6">
+                    <label class="block text-neutral-600 dark:text-neutral-400 mb-2 text-sm font-medium">Replace Image or PDF (Optional)</label>
+                    <input type="file" name="image" accept=".jpeg,.jpg,.png,.gif,.svg,.pdf"
+                        class="w-full text-neutral-500 dark:text-neutral-400 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-sm file:border-0 file:text-sm file:font-semibold file:bg-neutral-100 dark:file:bg-neutral-800 file:text-neutral-700 dark:file:text-white hover:file:bg-neutral-200 dark:hover:file:bg-neutral-700">
                 </div>
 
-                <div style="margin-bottom: 2rem;">
-                    <label style="display: block; color: #999; margin-bottom: 0.5rem; font-size: 0.9rem;">Description
-                        (Optional)</label>
+                <div class="mb-8">
+                    <label class="block text-neutral-600 dark:text-neutral-400 mb-2 text-sm font-medium">Description (Optional)</label>
                     <textarea id="edit-description" name="description" rows="3"
-                        style="width: 100%; background: #0f0f0f; border: 1px solid #333; color: #fff; padding: 0.8rem; border-radius: 4px; outline: none; transition: border-color 0.2s;"
-                        onfocus="this.style.borderColor='#2563eb'" onblur="this.style.borderColor='#333'"></textarea>
+                        class="w-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white p-3 rounded-sm outline-none transition-colors duration-200 focus:border-blue-600"></textarea>
                 </div>
 
                 <button type="submit"
-                    style="width: 100%; background: #2563eb; color: white; border: none; padding: 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; transition: all 0.2s ease;"
-                    onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">
+                    class="w-full bg-blue-600 text-white border-none p-4 rounded-sm cursor-pointer font-semibold transition-all duration-200 hover:bg-blue-700">
                     Save Changes
                 </button>
             </form>
         </div>
     </div>
     <div id="lightbox-modal" onclick="closeLightbox()"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(8px); cursor: zoom-out;">
+        class="hidden fixed inset-0 w-full h-full bg-black/95 z-[3000] items-center justify-center backdrop-blur-md cursor-zoom-out">
         <button onclick="closeLightbox()"
-            style="position: absolute; top: 2rem; right: 2rem; background: none; border: none; color: #fff; font-size: 2.5rem; cursor: pointer; z-index: 3001;">&times;</button>
+            class="absolute top-8 right-8 bg-transparent border-none text-white text-4xl cursor-pointer z-[3001] hover:text-neutral-300">&times;</button>
 
-        <div style="max-width: 90%; max-height: 90%; display: flex; flex-direction: column; align-items: center;"
-            onclick="event.stopPropagation()">
+        <div class="max-w-[90%] max-h-[90%] flex flex-col items-center" onclick="event.stopPropagation()">
             <img id="lightbox-img" src="" alt=""
-                style="max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 4px; box-shadow: 0 0 30px rgba(0,0,0,0.5);">
-            <div style="margin-top: 1.5rem; text-align: center; color: #fff;">
-                <h2 id="lightbox-title" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></h2>
-                <p id="lightbox-desc" style="color: #999; font-size: 1rem; max-width: 600px;"></p>
+                class="max-w-full max-h-[80vh] object-contain rounded-sm shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+            <div class="mt-6 text-center text-white">
+                <h2 id="lightbox-title" class="text-2xl mb-2 font-bold"></h2>
+                <p id="lightbox-desc" class="text-neutral-400 text-base max-w-[600px]"></p>
             </div>
         </div>
     </div>
@@ -203,7 +195,8 @@
             titleEl.textContent = title;
             descEl.textContent = desc || '';
 
-            modal.style.display = 'flex';
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
         }
 
@@ -217,21 +210,23 @@
             titleInput.value = title;
             descInput.value = desc || '';
 
-            modal.style.display = 'flex';
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
         }
 
         function closeLightbox() {
             const modal = document.getElementById('lightbox-modal');
-            modal.style.display = 'none';
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
             document.body.style.overflow = 'auto';
         }
 
-        document.addEventListener('keydown', function (e) {
+        document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeLightbox();
         });
 
-        @if(request()->has('admin'))
-            const grid = document.querySelector('.portfolio-grid');
+        @if (request()->has('admin'))
+            const grid = document.querySelector('.grid');
             if (grid) {
                 const sortable = new Sortable(grid, {
                     animation: 150,
@@ -240,22 +235,23 @@
                     delayOnTouchOnly: false,
                     touchStartThreshold: 5,
                     ghostClass: 'sortable-ghost',
-                    onEnd: function () {
+                    onEnd: function() {
                         const cards = grid.querySelectorAll('.portfolio-card');
                         const order = Array.from(cards).map(card => card.dataset.id);
 
-                        fetch('{{ route("pictures.reorder") }}?admin={{ request("admin") }}', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            },
-                            body: JSON.stringify({ order: order })
-                        })
+                        fetch('{{ route('pictures.reorder') }}?admin={{ request('admin') }}', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify({
+                                    order: order
+                                })
+                            })
                             .then(response => response.json())
                             .then(data => {
-                                if (data.success) {
-                                }
+                                if (data.success) {}
                             })
                             .catch(error => console.error('Error saving order:', error));
                     }
@@ -263,7 +259,7 @@
             }
         @endif
     </script>
-    @if(request()->has('admin'))
+    @if (request()->has('admin'))
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
         <style>
             .sortable-ghost {

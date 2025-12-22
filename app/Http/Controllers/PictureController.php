@@ -11,12 +11,13 @@ class PictureController extends Controller
     public function index()
     {
         $pictures = Picture::orderBy('order', 'asc')->orderBy('created_at', 'desc')->get();
+
         return view('portfolio.pictures', compact('pictures'));
     }
 
     public function store(Request $request)
     {
-        if (!$request->has('admin')) {
+        if (! $request->has('admin')) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -39,7 +40,7 @@ class PictureController extends Controller
 
     public function destroy(Request $request, Picture $picture)
     {
-        if (!$request->has('admin')) {
+        if (! $request->has('admin')) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -51,7 +52,7 @@ class PictureController extends Controller
 
     public function update(Request $request, Picture $picture)
     {
-        if (!$request->has('admin')) {
+        if (! $request->has('admin')) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -79,7 +80,7 @@ class PictureController extends Controller
 
     public function reorder(Request $request)
     {
-        if (!$request->has('admin')) {
+        if (! $request->has('admin')) {
             return response()->json(['error' => 'Unauthorized'], 403);
         }
 

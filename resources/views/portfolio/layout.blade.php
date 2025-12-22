@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Portfolio') - {{ config('app.name', 'Design Portfolio') }}</title>
+    <title>Hugo Berneis Design Portfolio</title>
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link
@@ -21,234 +21,8 @@
     @endif
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Instrument Sans', sans-serif;
-            background-color: #0f0f0f;
-            color: #e5e5e5;
-            line-height: 1.6;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            padding: 3rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .portfolio-card {
-            background: #1a1a1a;
-            border-radius: 2px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: 1px solid #2a2a2a;
-        }
-
-        .portfolio-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            border-color: #3a3a3a;
-        }
-
-        .portfolio-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .portfolio-card-content {
-            padding: 1.5rem;
-        }
-
-        .portfolio-card-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-            letter-spacing: 0.3px;
-        }
-
-        .portfolio-card-category {
-            display: inline-block;
-            background-color: #2a2a2a;
-            color: #999;
-            padding: 0.35rem 0.8rem;
-            border-radius: 2px;
-            font-size: 0.8rem;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 500;
-        }
-
-        .portfolio-card-description {
-            color: #999;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .btn-view {
-            display: inline-block;
-            background-color: transparent;
-            color: #e5e5e5;
-            padding: 0.5rem 1rem;
-            border: 1px solid #3a3a3a;
-            border-radius: 2px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            letter-spacing: 0.3px;
-        }
-
-        .btn-view:hover {
-            background-color: #1a1a1a;
-            border-color: #5a5a5a;
-            color: #ffffff;
-        }
-
-        header {
-            background-color: #0a0a0a;
-            border-bottom: 1px solid #2a2a2a;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-decoration: none;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #999;
-            margin-left: 2.5rem;
-            font-weight: 500;
-            transition: color 0.2s ease;
-            font-size: 0.95rem;
-            letter-spacing: 0.2px;
-        }
-
-        nav a:hover {
-            color: #ffffff;
-        }
-
-        .category-filters {
-            display: flex;
-            gap: 0.75rem;
-            padding: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 1400px;
-            margin: 0 auto;
-            border-bottom: 1px solid #2a2a2a;
-        }
-
-        .filter-btn {
-            background-color: transparent;
-            border: 1px solid #3a3a3a;
-            padding: 0.5rem 1.2rem;
-            border-radius: 2px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            color: #999;
-            font-size: 0.9rem;
-            letter-spacing: 0.3px;
-            text-transform: capitalize;
-        }
-
-        .filter-btn:hover {
-            border-color: #5a5a5a;
-            color: #e5e5e5;
-        }
-
-        .filter-btn.active {
-            background-color: #ffffff;
-            color: #0f0f0f;
-            border-color: #ffffff;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .hero {
-            background-color: #0a0a0a;
-            color: #e5e5e5;
-            padding: 5rem 2rem;
-            text-align: center;
-            border-bottom: 1px solid #2a2a2a;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            color: #ffffff;
-        }
-
-        .hero p {
-            font-size: 1.05rem;
-            opacity: 0.8;
-            max-width: 600px;
-            margin: 0 auto;
-            letter-spacing: 0.3px;
-        }
-
-        .model-viewer {
-            width: 100%;
-            height: 250px;
-            background: #1a1a1a;
-            border-radius: 2px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #2a2a2a;
-        }
-
-        .model-viewer canvas {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
+        /* Custom model viewer styles that might be hard to replicate with pure utility classes alone if dynamic */
         .model-viewer-label {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.6);
-            color: #999;
-            padding: 0.4rem 0.8rem;
-            border-radius: 2px;
-            font-size: 0.75rem;
-            pointer-events: none;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
             opacity: 0;
             transition: opacity 0.2s ease;
         }
@@ -256,30 +30,23 @@
         .model-viewer:hover .model-viewer-label {
             opacity: 1;
         }
-
-        .model-viewer-loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #999;
-            font-size: 0.85rem;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 1rem;
-            border-radius: 2px;
-            pointer-events: none;
-        }
     </style>
 </head>
 
-<body>
-    <header>
-        <div class="header-container">
-            <a href="{{ route('portfolio.index') }}" class="logo">Hugo's 3D Design Portfolio</a>
+<body class="bg-white text-neutral-800 dark:bg-neutral-950 dark:text-neutral-200 leading-relaxed font-sans antialiased transition-colors duration-300">
+    <header class="bg-white/80 dark:bg-neutral-950/80 border-b border-neutral-200 dark:border-neutral-800 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-[1400px] mx-auto px-8 py-6 flex justify-between items-center">
+            <a href="{{ route('portfolio.index') }}"
+                class="text-xl font-bold text-neutral-900 dark:text-white no-underline tracking-tighter">Hugo's 3D Design Portfolio</a>
             <nav>
-                <a href="{{ route('portfolio.index') }}">Home</a>
-                <a href="{{ route('pictures.index') }}">Pictures</a>
-                <a href="{{ route('portfolio.contact') }}">Contact</a>
+                <a href="{{ route('portfolio.index') }}"
+                    class="{{ request()->routeIs('portfolio.index') ? 'text-blue-600 dark:text-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white' }} no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide">Home</a>
+                <a href="{{ route('pictures.index') }}"
+                    class="{{ request()->routeIs('pictures.index') ? 'text-blue-600 dark:text-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white' }} no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide">Pictures</a>
+                <a href="{{ route('portfolio.cv') }}"
+                    class="{{ request()->routeIs('portfolio.cv') ? 'text-blue-600 dark:text-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white' }} no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide">CV</a>
+                <a href="{{ route('portfolio.contact') }}"
+                    class="{{ request()->routeIs('portfolio.contact') ? 'text-blue-600 dark:text-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white' }} no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide">Contact</a>
             </nav>
         </div>
     </header>
@@ -289,10 +56,10 @@
     </main>
 
 
-    <footer style="background-color: #1a1a1a; color: white; padding: 3rem 2rem; text-align: center;">
-        <div class="container">
+    <footer class="bg-neutral-50 dark:bg-neutral-900 text-neutral-600 dark:text-white py-12 px-8 text-center border-t border-neutral-200 dark:border-transparent">
+        <div class="max-w-[1400px] mx-auto">
             <p>&copy; {{ date('Y') }} Hugo's 3D Design Portfolio. All rights reserved.</p>
-            <p style="margin-top: 0.5rem; opacity: 0.7;">Showcasing premium 3D designs and visualizations.</p>
+            <p class="mt-2 opacity-70">Showcasing premium 3D designs and visualizations.</p>
         </div>
     </footer>
 
@@ -338,7 +105,8 @@
 
             createLoadingIndicator() {
                 const loader = document.createElement('div');
-                loader.className = 'model-viewer-loading';
+                loader.className =
+                    'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-neutral-400 text-sm bg-black/60 p-4 rounded-sm pointer-events-none';
                 loader.textContent = 'Loading 3D model...';
                 this.container.appendChild(loader);
                 this.loadingIndicator = loader;
@@ -357,32 +125,39 @@
                 const height = this.container.clientHeight;
 
                 this.scene = new THREE.Scene();
-                this.scene.background = new THREE.Color(0x1a1a1a);
+                this.updateThemeColors();
 
                 this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
                 this.camera.position.set(0, 0, 100);
 
-                this.renderer = new THREE.WebGLRenderer({ antialias: true });
+                this.renderer = new THREE.WebGLRenderer({
+                    antialias: true
+                });
                 this.renderer.setSize(width, height);
                 this.renderer.setPixelRatio(window.devicePixelRatio);
-                this.renderer.setClearColor(0x1a1a1a, 1);
+                this.updateThemeColors(); // Apply to renderer too
                 this.container.appendChild(this.renderer.domElement);
 
-                this.ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+                // Listen for theme changes
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                    this.updateThemeColors();
+                });
+
+                this.ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
                 this.scene.add(this.ambientLight);
 
-                const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.5);
-                this.scene.add(hemisphereLight);
+                this.hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.0);
+                this.scene.add(this.hemiLight);
 
-                this.keyLight = new THREE.DirectionalLight(0xffffff, 1.0);
+                this.keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
                 this.keyLight.position.set(50, 50, 50);
                 this.scene.add(this.keyLight);
 
-                this.fillLight = new THREE.DirectionalLight(0xffffff, 0);
+                this.fillLight = new THREE.DirectionalLight(0xffffff, 0.3);
                 this.fillLight.position.set(-50, 0, 50);
                 this.scene.add(this.fillLight);
 
-                this.rimLight = new THREE.DirectionalLight(0xffffff, 0.7);
+                this.rimLight = new THREE.DirectionalLight(0xffffff, 0.8);
                 this.rimLight.position.set(0, 50, -50);
                 this.scene.add(this.rimLight);
 
@@ -416,6 +191,7 @@
                         });
 
                         this.model = new THREE.Mesh(geometry, material);
+                        this.updateThemeColors(); // Apply theme-aware colors and lighting
                         this.scene.add(this.model);
 
                         const boundingBox = new THREE.Box3().setFromObject(this.model);
@@ -463,6 +239,42 @@
                         }
                     }
                 );
+            }
+
+            updateThemeColors() {
+                const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const bgColor = isDark ? 0x0a0a0a : 0xf9fafb; // neutral-950 vs neutral-50
+
+                if (this.scene) {
+                    this.scene.background = new THREE.Color(bgColor);
+                }
+                if (this.renderer) {
+                    this.renderer.setClearColor(bgColor, 1);
+                }
+
+                // Adjust light intensities for balanced contrast and brightness in dark mode
+                if (this.ambientLight) {
+                    this.ambientLight.intensity = isDark ? 0.27 : 0.4;
+                }
+                if (this.hemiLight) {
+                    this.hemiLight.intensity = isDark ? 0.55 : 0.8;
+                }
+                if (this.keyLight) {
+                    this.keyLight.intensity = isDark ? 0.9 : 0.9;
+                }
+                if (this.fillLight) {
+                    this.fillLight.intensity = isDark ? 0.15 : 0.2;
+                }
+                if (this.rimLight) {
+                    this.rimLight.intensity = isDark ? 0.5 : 0.6;
+                }
+
+                if (this.model && this.model.material) {
+                    // Middle ground color and roughness
+                    this.model.material.color.set(isDark ? 0xaaaaaa : 0x707070);
+                    this.model.material.roughness = isDark ? 0.5 : 0.4;
+                    this.model.material.needsUpdate = true;
+                }
             }
 
             onMouseMove(event) {
@@ -544,7 +356,7 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const viewers = [];
             document.querySelectorAll('[data-model-viewer]').forEach(element => {
                 const modelPath = element.getAttribute('data-model-path');
@@ -554,7 +366,11 @@
                 const rotZ = parseFloat(element.getAttribute('data-rotation-z') || 0);
 
                 if (modelPath) {
-                    const viewer = new ModelViewer(element, modelPath, { x: rotX, y: rotY, z: rotZ }, designId);
+                    const viewer = new ModelViewer(element, modelPath, {
+                        x: rotX,
+                        y: rotY,
+                        z: rotZ
+                    }, designId);
                     viewers.push(viewer);
                 }
             });

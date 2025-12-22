@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Design;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class AdminDesignController extends Controller
@@ -15,6 +15,7 @@ class AdminDesignController extends Controller
     public function index(): View
     {
         $designs = Design::orderBy('order')->paginate(10);
+
         return view('admin.designs.index', compact('designs'));
     }
 
