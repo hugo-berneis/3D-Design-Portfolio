@@ -28,7 +28,7 @@ class PortfolioController extends Controller
 
     public function category(string $category): View
     {
-        $designs = Design::where('category', 'LIKE', '%' . $category . '%')
+        $designs = Design::where('category', 'LIKE', '%'.$category.'%')
             ->orderBy('order')
             ->get();
 

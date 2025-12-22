@@ -10,6 +10,7 @@
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <a href="mailto:hugo@berneis.com" >
             <div class="bg-neutral-900 p-10 rounded-lg border border-neutral-800 transition-all duration-200 hover:-translate-y-1 hover:border-blue-600 group">
                 <div class="bg-blue-600/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-600">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -19,9 +20,11 @@
                     </svg>
                 </div>
                 <h3 class="text-white mb-2 text-lg font-medium">Personal Email</h3>
-                <a href="mailto:hugo@bereneis.com" class="text-blue-600 no-underline font-medium text-base hover:text-blue-500">hugo@bereneis.com</a>
+                <div class="text-blue-600 no-underline font-medium text-base hover:text-blue-500">hugo@berneis.com</div>
             </div>
+            </a>
 
+            <a href="mailto:hberneis@seattleu.edu">
             <div class="bg-neutral-900 p-10 rounded-lg border border-neutral-800 transition-all duration-200 hover:-translate-y-1 hover:border-blue-600 group">
                 <div class="bg-blue-600/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-600">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -31,10 +34,10 @@
                     </svg>
                 </div>
                 <h3 class="text-white mb-2 text-lg font-medium">College Email</h3>
-                <a href="mailto:hberneis@seattleu.edu" class="text-blue-600 no-underline font-medium text-base hover:text-blue-500">hberneis@seattleu.edu</a>
+                <div class="text-blue-600 no-underline font-medium text-base hover:text-blue-500">hberneis@seattleu.edu</div>
             </div>
+        </a>
         </div>
-
 
     </div>
 @endsection
