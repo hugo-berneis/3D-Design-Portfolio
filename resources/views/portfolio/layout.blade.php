@@ -26,6 +26,7 @@
             opacity: 0;
             transition: opacity 0.2s ease;
         }
+
         .model-viewer:hover .model-viewer-label {
             opacity: 1;
         }
@@ -35,11 +36,17 @@
 <body class="bg-neutral-950 text-neutral-200 leading-relaxed font-sans antialiased">
     <header class="bg-neutral-950 border-b border-neutral-800 sticky top-0 z-50">
         <div class="max-w-[1400px] mx-auto px-8 py-6 flex justify-between items-center">
-            <a href="{{ route('portfolio.index') }}" class="text-xl font-bold text-white no-underline tracking-tighter">Hugo's 3D Design Portfolio</a>
+            <a href="{{ route('portfolio.index') }}"
+                class="text-xl font-bold text-white no-underline tracking-tighter">Hugo's 3D Design Portfolio</a>
             <nav>
-                <a href="{{ route('portfolio.index') }}" class="text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-white">Home</a>
-                <a href="{{ route('pictures.index') }}" class="text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-white">Pictures</a>
-                <a href="{{ route('portfolio.contact') }}" class="text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-white">Contact</a>
+                <a href="{{ route('portfolio.index') }}"
+                    class="text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-white">Home</a>
+                <a href="{{ route('pictures.index') }}"
+                    class="text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-white">Pictures</a>
+                <a href="{{ route('portfolio.cv') }}"
+                    class="text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-white">CV</a>
+                <a href="{{ route('portfolio.contact') }}"
+                    class="text-neutral-400 no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide hover:text-white">Contact</a>
             </nav>
         </div>
     </header>
@@ -98,7 +105,8 @@
 
             createLoadingIndicator() {
                 const loader = document.createElement('div');
-                loader.className = 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-neutral-400 text-sm bg-black/60 p-4 rounded-sm pointer-events-none';
+                loader.className =
+                    'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-neutral-400 text-sm bg-black/60 p-4 rounded-sm pointer-events-none';
                 loader.textContent = 'Loading 3D model...';
                 this.container.appendChild(loader);
                 this.loadingIndicator = loader;
@@ -122,7 +130,9 @@
                 this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
                 this.camera.position.set(0, 0, 100);
 
-                this.renderer = new THREE.WebGLRenderer({ antialias: true });
+                this.renderer = new THREE.WebGLRenderer({
+                    antialias: true
+                });
                 this.renderer.setSize(width, height);
                 this.renderer.setPixelRatio(window.devicePixelRatio);
                 this.renderer.setClearColor(0x1a1a1a, 1);
@@ -304,7 +314,7 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const viewers = [];
             document.querySelectorAll('[data-model-viewer]').forEach(element => {
                 const modelPath = element.getAttribute('data-model-path');
@@ -314,7 +324,11 @@
                 const rotZ = parseFloat(element.getAttribute('data-rotation-z') || 0);
 
                 if (modelPath) {
-                    const viewer = new ModelViewer(element, modelPath, { x: rotX, y: rotY, z: rotZ }, designId);
+                    const viewer = new ModelViewer(element, modelPath, {
+                        x: rotX,
+                        y: rotY,
+                        z: rotZ
+                    }, designId);
                     viewers.push(viewer);
                 }
             });

@@ -20,6 +20,10 @@ Route::get('/contact', function () {
     return view('portfolio.contact');
 })->name('portfolio.contact');
 
+Route::get('/cv', function () {
+    return view('portfolio.cv');
+})->name('portfolio.cv');
+
 Route::get('/upload', function () {
     return view('portfolio.upload', ['designs' => \App\Models\Design::all()]);
 })->name('models.upload');

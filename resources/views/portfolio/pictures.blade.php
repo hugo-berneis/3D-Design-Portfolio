@@ -9,8 +9,9 @@
                 <h1 class="text-4xl text-white mb-2 font-bold tracking-tight">Pictures</h1>
                 <p class="text-neutral-400 text-lg">Screenshots and photos of models.</p>
             </div>
-            @if(request()->has('admin'))
-                <button onclick="document.getElementById('upload-modal').classList.remove('hidden'); document.getElementById('upload-modal').classList.add('flex')"
+            @if (request()->has('admin'))
+                <button
+                    onclick="document.getElementById('upload-modal').classList.remove('hidden'); document.getElementById('upload-modal').classList.add('flex')"
                     class="bg-blue-600 text-white border-none py-3 px-6 rounded-sm cursor-pointer font-semibold transition-all duration-200 hover:bg-blue-700">
                     Upload Picture
                 </button>
@@ -26,13 +27,13 @@
             </div>
         @endif
 
-        @if(session('error'))
+        @if (session('error'))
             <div class="bg-red-500/10 border border-red-500 text-red-500 p-4 rounded-sm mb-8">
                 {{ session('error') }}
             </div>
         @endif
 
-        @if(session('success'))
+        @if (session('success'))
             <div class="bg-green-500/10 border border-green-500 text-green-500 p-4 rounded-sm mb-8">
                 {{ session('success') }}
             </div>
@@ -40,28 +41,29 @@
 
         <div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6">
             @forelse($pictures as $picture)
-                <div class="bg-neutral-900 rounded-sm overflow-hidden shadow-sm transition-all duration-200 cursor-pointer border border-neutral-800 hover:shadow-lg hover:border-neutral-700 group portfolio-card" data-id="{{ $picture->id }}" @if(Str::endsWith($picture->image_path, '.pdf'))
-                onclick="window.open('{{ Storage::url($picture->image_path) }}', '_blank')" @else
-                        onclick="openLightbox('{{ Storage::url($picture->image_path) }}', '{{ addslashes($picture->title) }}', '{{ addslashes($picture->description) }}')"
-                    @endif>
-                    @if(Str::endsWith($picture->image_path, '.pdf'))
+                <div class="bg-neutral-900 rounded-sm overflow-hidden shadow-sm transition-all duration-200 cursor-pointer border border-neutral-800 hover:shadow-lg hover:border-neutral-700 group portfolio-card"
+                    data-id="{{ $picture->id }}"
+                    @if (Str::endsWith($picture->image_path, '.pdf')) onclick="window.open('{{ Storage::url($picture->image_path) }}', '_blank')" @else
+                        onclick="openLightbox('{{ Storage::url($picture->image_path) }}', '{{ addslashes($picture->title) }}', '{{ addslashes($picture->description) }}')" @endif>
+                    @if (Str::endsWith($picture->image_path, '.pdf'))
                         <div class="h-[200px] flex flex-col items-center justify-center bg-neutral-950 text-red-500">
                             <span class="text-5xl mb-2">PDF</span>
                             <span class="text-xs text-neutral-400">Click to view document</span>
                         </div>
                     @else
-                        <img src="{{ Storage::url($picture->image_path) }}" alt="{{ $picture->title }}" class="cursor-zoom-in w-full h-[250px] object-cover block">
+                        <img src="{{ Storage::url($picture->image_path) }}" alt="{{ $picture->title }}"
+                            class="cursor-zoom-in w-full h-[250px] object-cover block">
                     @endif
                     <div class="p-6">
                         <h3 class="text-base font-semibold mb-2 text-white tracking-wide">{{ $picture->title }}</h3>
-                        @if($picture->description)
+                        @if ($picture->description)
                             <p class="text-neutral-400 text-sm leading-relaxed mb-4">{{ $picture->description }}</p>
                         @endif
-                        @if(request()->has('admin'))
+                        @if (request()->has('admin'))
                             <form action="{{ route('pictures.destroy', $picture) }}" method="POST" class="mt-4">
                                 @csrf
                                 @method('DELETE')
-                                @if(request()->has('admin'))
+                                @if (request()->has('admin'))
                                     <input type="hidden" name="admin" value="{{ request('admin') }}">
                                 @endif
                                 <button type="submit"
@@ -77,23 +79,26 @@
                     </div>
                 </div>
             @empty
-                <div class="col-span-full text-center p-20 bg-neutral-900 border border-dashed border-neutral-800 rounded-lg">
+                <div
+                    class="col-span-full text-center p-20 bg-neutral-900 border border-dashed border-neutral-800 rounded-lg">
                     <p class="text-neutral-500 text-lg">No pictures uploaded yet.</p>
                 </div>
             @endforelse
         </div>
     </div>
 
-    <div id="upload-modal" class="hidden fixed inset-0 w-full h-full bg-black/80 z-[2000] items-center justify-center backdrop-blur-sm">
+    <div id="upload-modal"
+        class="hidden fixed inset-0 w-full h-full bg-black/80 z-[2000] items-center justify-center backdrop-blur-sm">
         <div class="bg-neutral-900 p-10 rounded-lg w-full max-w-[500px] border border-neutral-800 relative">
-            <button onclick="document.getElementById('upload-modal').classList.add('hidden'); document.getElementById('upload-modal').classList.remove('flex')"
+            <button
+                onclick="document.getElementById('upload-modal').classList.add('hidden'); document.getElementById('upload-modal').classList.remove('flex')"
                 class="absolute top-4 right-4 bg-transparent border-none text-neutral-500 text-2xl cursor-pointer hover:text-white">&times;</button>
 
             <h2 class="text-white mb-6 text-2xl font-bold">Upload Picture</h2>
 
             <form action="{{ route('pictures.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @if(request()->has('admin'))
+                @if (request()->has('admin'))
                     <input type="hidden" name="admin" value="{{ request('admin') }}">
                 @endif
                 <div class="mb-6">
@@ -122,9 +127,11 @@
         </div>
     </div>
     <!-- Edit Modal -->
-    <div id="edit-modal" class="hidden fixed inset-0 w-full h-full bg-black/80 z-[2000] items-center justify-center backdrop-blur-sm">
+    <div id="edit-modal"
+        class="hidden fixed inset-0 w-full h-full bg-black/80 z-[2000] items-center justify-center backdrop-blur-sm">
         <div class="bg-neutral-900 p-10 rounded-lg w-full max-w-[500px] border border-neutral-800 relative">
-            <button onclick="document.getElementById('edit-modal').classList.add('hidden'); document.getElementById('edit-modal').classList.remove('flex')"
+            <button
+                onclick="document.getElementById('edit-modal').classList.add('hidden'); document.getElementById('edit-modal').classList.remove('flex')"
                 class="absolute top-4 right-4 bg-transparent border-none text-neutral-500 text-2xl cursor-pointer hover:text-white">&times;</button>
 
             <h2 class="text-white mb-6 text-2xl font-bold">Edit Picture</h2>
@@ -132,7 +139,7 @@
             <form id="edit-form" action="" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
-                @if(request()->has('admin'))
+                @if (request()->has('admin'))
                     <input type="hidden" name="admin" value="{{ request('admin') }}">
                 @endif
                 <div class="mb-6">
@@ -143,7 +150,8 @@
 
                 <div class="mb-6">
                     <label class="block text-neutral-400 mb-2 text-sm font-medium">Replace Image or PDF (Optional)</label>
-                    <input type="file" name="image" accept=".jpeg,.jpg,.png,.gif,.svg,.pdf" class="w-full text-neutral-400 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-sm file:border-0 file:text-sm file:font-semibold file:bg-neutral-800 file:text-white hover:file:bg-neutral-700">
+                    <input type="file" name="image" accept=".jpeg,.jpg,.png,.gif,.svg,.pdf"
+                        class="w-full text-neutral-400 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-sm file:border-0 file:text-sm file:font-semibold file:bg-neutral-800 file:text-white hover:file:bg-neutral-700">
                 </div>
 
                 <div class="mb-8">
@@ -164,8 +172,7 @@
         <button onclick="closeLightbox()"
             class="absolute top-8 right-8 bg-transparent border-none text-white text-4xl cursor-pointer z-[3001] hover:text-neutral-300">&times;</button>
 
-        <div class="max-w-[90%] max-h-[90%] flex flex-col items-center"
-            onclick="event.stopPropagation()">
+        <div class="max-w-[90%] max-h-[90%] flex flex-col items-center" onclick="event.stopPropagation()">
             <img id="lightbox-img" src="" alt=""
                 class="max-w-full max-h-[80vh] object-contain rounded-sm shadow-[0_0_30px_rgba(0,0,0,0.5)]">
             <div class="mt-6 text-center text-white">
@@ -212,11 +219,11 @@
             document.body.style.overflow = 'auto';
         }
 
-        document.addEventListener('keydown', function (e) {
+        document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeLightbox();
         });
 
-        @if(request()->has('admin'))
+        @if (request()->has('admin'))
             const grid = document.querySelector('.grid');
             if (grid) {
                 const sortable = new Sortable(grid, {
@@ -226,22 +233,23 @@
                     delayOnTouchOnly: false,
                     touchStartThreshold: 5,
                     ghostClass: 'sortable-ghost',
-                    onEnd: function () {
+                    onEnd: function() {
                         const cards = grid.querySelectorAll('.portfolio-card');
                         const order = Array.from(cards).map(card => card.dataset.id);
 
-                        fetch('{{ route("pictures.reorder") }}?admin={{ request("admin") }}', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            },
-                            body: JSON.stringify({ order: order })
-                        })
+                        fetch('{{ route('pictures.reorder') }}?admin={{ request('admin') }}', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify({
+                                    order: order
+                                })
+                            })
                             .then(response => response.json())
                             .then(data => {
-                                if (data.success) {
-                                }
+                                if (data.success) {}
                             })
                             .catch(error => console.error('Error saving order:', error));
                     }
@@ -249,7 +257,7 @@
             }
         @endif
     </script>
-    @if(request()->has('admin'))
+    @if (request()->has('admin'))
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
         <style>
             .sortable-ghost {
