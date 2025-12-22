@@ -17,6 +17,7 @@ class PortfolioController extends Controller
 
         return view('portfolio.index', [
             'designs' => $designs,
+            'category' => null,
             'categories' => $allCategories,
         ]);
     }
@@ -32,9 +33,14 @@ class PortfolioController extends Controller
             ->orderBy('order')
             ->get();
 
-        return view('portfolio.category', [
+        $categories = Design::pluck('category')->flatMap(function ($item) {
+            return array_map('trim', explode(',', $item));
+        })->unique()->sort()->values();
+
+        return view('portfolio.index', [
             'designs' => $designs,
             'category' => $category,
+            'categories' => $categories,
         ]);
     }
 

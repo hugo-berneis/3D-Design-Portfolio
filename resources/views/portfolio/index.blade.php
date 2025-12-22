@@ -6,18 +6,24 @@
     <section class="bg-neutral-950 text-neutral-200 py-20 px-8 text-center border-b border-neutral-800">
         <div class="max-w-[1400px] mx-auto">
             <h1 class="text-4xl mb-4 font-bold -tracking-wide text-white">My Portfolio</h1>
-            <p class="text-[1.05rem] opacity-80 max-w-[600px] mx-auto tracking-wide">My collection of 3D designs. Each model
-                is made from scratch using Shapr3D.</p>
+            <p class="text-[1.05rem] opacity-80 max-w-[600px] mx-auto tracking-wide">My collection of 3D designs. <br>Each model
+                is made from scratch using <a href="https://www.shapr3d.com/" class="hover:text-white">Shapr3D</a>.</p>
         </div>
     </section>
 
     <section class="flex gap-3 p-8 justify-center flex-wrap max-w-[1400px] mx-auto border-b border-neutral-800"
         id="portfolio">
         <a href="{{ route('portfolio.index') }}"
-            class="bg-white text-neutral-950 border border-white py-2 px-5 rounded-sm cursor-pointer font-medium transition-all duration-200 text-sm tracking-wide capitalize">All</a>
+            @if ($category === null) class="bg-white text-neutral-950 border border-white py-2 px-5 rounded-sm cursor-pointer font-medium transition-all duration-200 text-sm tracking-wide capitalize"
+            @else class="bg-transparent border border-neutral-800 py-2 px-5 rounded-sm cursor-pointer font-medium transition-all duration-200 text-neutral-400 text-sm tracking-wide capitalize hover:border-neutral-600 hover:text-neutral-200"
+            @endif
+            >All</a>
         @foreach ($categories as $cat)
             <a href="{{ route('portfolio.category', $cat) }}"
-                class="bg-transparent border border-neutral-800 py-2 px-5 rounded-sm cursor-pointer font-medium transition-all duration-200 text-neutral-400 text-sm tracking-wide capitalize hover:border-neutral-600 hover:text-neutral-200">{{ $cat }}</a>
+                @if ($category === $cat) class="bg-white text-neutral-950 border border-white py-2 px-5 rounded-sm cursor-pointer font-medium transition-all duration-200 text-sm tracking-wide capitalize"
+                @else class="bg-transparent border border-neutral-800 py-2 px-5 rounded-sm cursor-pointer font-medium transition-all duration-200 text-neutral-400 text-sm tracking-wide capitalize hover:border-neutral-600 hover:text-neutral-200"
+                @endif
+                >{{ $cat }}</a>
         @endforeach
     </section>
 
@@ -26,6 +32,7 @@
             <div
                 class="bg-neutral-900 rounded-sm overflow-hidden shadow-sm transition-all duration-200 cursor-pointer border border-neutral-800 hover:shadow-lg hover:border-neutral-700 group">
                 @if ($design->model_file)
+                 <a href="{{ route('portfolio.show', $design) }}" class="cursor-pointer">
                     <div class="w-full h-[250px] bg-neutral-900 rounded-sm relative overflow-hidden border border-neutral-800 group"
                         data-model-viewer data-model-path="{{ Storage::url($design->model_file) }}"
                         data-design-id="{{ $design->id }}" data-rotation-x="{{ $design->rotation_x }}"
@@ -34,6 +41,7 @@
                             class="absolute bottom-2.5 left-2.5 bg-black/60 text-neutral-400 py-1.5 px-3 rounded-sm text-xs pointer-events-none uppercase tracking-wider opacity-0 transition-opacity duration-200 group-hover:opacity-100 model-viewer-label">
                             Move mouse to rotate</div>
                     </div>
+                 </a>
                 @else
                     <img src="{{ $design->thumbnail }}" alt="{{ $design->title }}" loading="lazy"
                         class="w-full h-[250px] object-cover block">
