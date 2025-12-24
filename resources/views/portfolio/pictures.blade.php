@@ -4,9 +4,9 @@
 
 @section('content')
     <div class="max-w-[1400px] mx-auto py-12 px-8 text-neutral-800 dark:text-neutral-200">
-        <div class="flex justify-between items-center mb-12">
-            <div>
-                <h1 class="text-4xl text-neutral-900 dark:text-white mb-2 font-bold tracking-tight">Pictures</h1>
+        <div class="text-center mb-12 flex flex-col md:flex-row md:justify-between md:items-center gap-6">
+            <div class>
+                <h1 class="text-4xl text-neutral-900 dark:text-white mb-2 font-bold tracking-tight">Gallery</h1>
                 <p class="text-neutral-600 dark:text-neutral-400 text-lg">Screenshots and photos of models.</p>
             </div>
             @if (request()->has('admin'))

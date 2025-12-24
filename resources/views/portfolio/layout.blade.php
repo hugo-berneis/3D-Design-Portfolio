@@ -33,18 +33,20 @@
     </style>
 </head>
 
-<body class="bg-white text-neutral-800 dark:bg-neutral-950 dark:text-neutral-200 leading-relaxed font-sans antialiased transition-colors duration-300">
-    <header class="bg-white/80 dark:bg-neutral-950/80 border-b border-neutral-200 dark:border-neutral-800 backdrop-blur-md sticky top-0 z-50">
+<body
+    class="bg-white text-neutral-800 dark:bg-neutral-950 dark:text-neutral-200 leading-relaxed font-sans antialiased transition-colors duration-300">
+    <header
+        class="bg-white/80 dark:bg-neutral-950/80 border-b border-neutral-200 dark:border-neutral-800 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-[1400px] mx-auto px-8 py-6 flex justify-between items-center">
-            <a href="{{ route('portfolio.index') }}"
-                class="text-xl font-bold text-neutral-900 dark:text-white no-underline tracking-tighter">Hugo's 3D Design Portfolio</a>
+            <a href="{{ route('portfolio.cv') }}"
+                class="text-xl font-bold text-neutral-900 dark:text-white no-underline tracking-tighter">Hugo Berneis Portfolio</a>
             <nav>
-                <a href="{{ route('portfolio.index') }}"
-                    class="{{ request()->routeIs('portfolio.index') ? 'text-blue-600 dark:text-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white' }} no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide">Home</a>
-                <a href="{{ route('pictures.index') }}"
-                    class="{{ request()->routeIs('pictures.index') ? 'text-blue-600 dark:text-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white' }} no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide">Pictures</a>
                 <a href="{{ route('portfolio.cv') }}"
                     class="{{ request()->routeIs('portfolio.cv') ? 'text-blue-600 dark:text-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white' }} no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide">CV</a>
+                <a href="{{ route('portfolio.index') }}"
+                    class="{{ request()->routeIs('portfolio.index') ? 'text-blue-600 dark:text-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white' }} no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide">Models</a>
+                <a href="{{ route('pictures.index') }}"
+                    class="{{ request()->routeIs('pictures.index') ? 'text-blue-600 dark:text-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white' }} no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide">Gallery</a>
                 <a href="{{ route('portfolio.contact') }}"
                     class="{{ request()->routeIs('portfolio.contact') ? 'text-blue-600 dark:text-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white' }} no-underline ml-10 font-medium transition-colors duration-200 text-[0.95rem] tracking-wide">Contact</a>
             </nav>
@@ -56,7 +58,8 @@
     </main>
 
 
-    <footer class="bg-neutral-50 dark:bg-neutral-900 text-neutral-600 dark:text-white py-12 px-8 text-center border-t border-neutral-200 dark:border-transparent">
+    <footer
+        class="bg-neutral-50 dark:bg-neutral-900 text-neutral-600 dark:text-white py-12 px-8 text-center border-t border-neutral-200 dark:border-transparent">
         <div class="max-w-[1400px] mx-auto">
             <p>&copy; {{ date('Y') }} Hugo's 3D Design Portfolio. All rights reserved.</p>
             <p class="mt-2 opacity-70">Showcasing premium 3D designs and visualizations.</p>
@@ -356,7 +359,7 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const viewers = [];
             document.querySelectorAll('[data-model-viewer]').forEach(element => {
                 const modelPath = element.getAttribute('data-model-path');
