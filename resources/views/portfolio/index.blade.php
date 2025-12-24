@@ -4,7 +4,7 @@
 
 @section('content')
     <section
-        class="bg-neutral-50 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 py-20 px-8 text-center border-b border-neutral-200 dark:border-neutral-800">
+        class="bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 py-20 px-8 text-center border-b border-neutral-200 dark:border-neutral-800">
         <div class="max-w-[1400px] mx-auto">
             <h1 class="text-4xl mb-4 font-bold -tracking-wide text-neutral-950 dark:text-white">Models</h1>
             <p class="text-[1.05rem] opacity-80 max-w-[600px] mx-auto tracking-wide text-neutral-600 dark:text-neutral-400">
