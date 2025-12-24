@@ -3,10 +3,18 @@
 @section('title', 'Contact')
 
 @section('content')
-    <div class="max-w-[800px] mx-auto py-20 px-8 text-center text-neutral-800 dark:text-neutral-200">
-        <h1 class="text-5xl text-neutral-900 dark:text-white mb-6 font-bold -tracking-wide">Get in Touch</h1>
+<section class="bg-neutral-50 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 py-20 px-8 text-center border-b border-neutral-200 dark:border-neutral-800">
+    <div class="max-w-[1400px] mx-auto">
+        <h1 class="text-4xl mb-4 font-bold -tracking-wide text-neutral-950 dark:text-white">Get in Touch</h1>
+        <p class="text-[1.05rem] opacity-80 max-w-[600px] mx-auto tracking-wide text-neutral-600 dark:text-neutral-400">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+    </div>
+</section>
+
+<div class="max-w-[800px] mx-auto  px-8 text-center text-neutral-800 dark:text-neutral-200">
+
+        <h1 class="text-5xl text-neutral-900 dark:text-white mb-6 font-bold -tracking-wide"></h1>
         <p class="text-neutral-600 dark:text-neutral-400 text-xl mb-16 max-w-[600px] mx-auto leading-relaxed">
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">

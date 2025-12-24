@@ -3,12 +3,15 @@
 @section('title', 'Pictures')
 
 @section('content')
+    <section class="bg-neutral-50 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 py-20 px-8 text-center border-b border-neutral-200 dark:border-neutral-800">
+        <div class="max-w-[1400px] mx-auto">
+            <h1 class="text-4xl mb-4 font-bold -tracking-wide text-neutral-950 dark:text-white">Gallery</h1>
+            <p class="text-[1.05rem] opacity-80 max-w-[600px] mx-auto tracking-wide text-neutral-600 dark:text-neutral-400">All the screenshots and photos of my 3D models.</p>
+        </div>
+    </section>
+
     <div class="max-w-[1400px] mx-auto py-12 px-8 text-neutral-800 dark:text-neutral-200">
         <div class="text-center mb-12 flex flex-col md:flex-row md:justify-between md:items-center gap-6">
-            <div class>
-                <h1 class="text-4xl text-neutral-900 dark:text-white mb-2 font-bold tracking-tight">Gallery</h1>
-                <p class="text-neutral-600 dark:text-neutral-400 text-lg">Screenshots and photos of models.</p>
-            </div>
             @if (request()->has('admin'))
                 <button
                     onclick="document.getElementById('upload-modal').classList.remove('hidden'); document.getElementById('upload-modal').classList.add('flex')"
