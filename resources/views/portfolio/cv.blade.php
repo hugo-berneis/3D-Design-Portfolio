@@ -56,7 +56,7 @@
             <!-- About Me -->
             <section>
                 <h2
-                    class="text-2xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center gap-3 text-neutral-900 dark:text-white mb-6 flex items-center gap-3">
+                    class="text-2xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center gap-3">
                     <span class="w-8 h-px bg-neutral-300 dark:bg-neutral-700"></span>
                     About Me
                 </h2>
@@ -103,7 +103,7 @@
                         class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-sm">
                         <div class="flex justify-between items-start mb-4">
                             <div>
-                                <h3 class="text-xl font-bold text-neutral-900 dark:text-white mb-1">Grant Highschool</h3>
+                                <h3 class="text-xl font-bold text-neutral-900 dark:text-white mb-1">Grant High School</h3>
                                 <p class="text-neutral-600 dark:text-neutral-400 font-medium">High School Diploma</p>
                             </div>
                             <span
@@ -237,7 +237,7 @@
                             <span class="text-sm text-neutral-500">2024</span>
                         </div>
                         <p class="text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">
-                            A 2D game concept reverse-engineering the tower defense genre for a highschool game jam.
+                            A 2D game concept reverse-engineering the tower defense genre for a high school game jam.
                         </p>
                         <div class="flex items-center justify-between">
                             <div class="flex gap-2">
