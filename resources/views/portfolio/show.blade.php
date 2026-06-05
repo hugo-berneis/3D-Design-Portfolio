@@ -12,7 +12,7 @@
             @if ($design->model_file)
                 <div class="bg-neutral-50 dark:bg-neutral-900 rounded-sm overflow-hidden mb-8 border border-neutral-200 dark:border-neutral-800 h-[500px] relative">
                     <div class="w-full h-full relative" data-model-viewer
-                        data-model-path="{{ Storage::url($design->model_file) }}" data-design-id="{{ $design->id }}"
+                        data-model-path="{{ $design->model_file_url }}" data-design-id="{{ $design->id }}"
                         data-rotation-x="{{ $design->rotation_x }}" data-rotation-y="{{ $design->rotation_y }}"
                         data-rotation-z="{{ $design->rotation_z }}">
                         <div
@@ -67,7 +67,7 @@
                     class="mt-12 p-10 bg-neutral-50 dark:bg-neutral-900 rounded-lg text-center border border-neutral-200 dark:border-neutral-800 bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 shadow-sm">
                     <h3 class="mb-4 text-neutral-950 dark:text-white text-2xl font-bold">Download Model</h3>
                     <p class="text-neutral-600 dark:text-neutral-400 mb-8 text-base">Get the STL file for your own use or 3D printing.</p>
-                    <a href="{{ Storage::url($design->model_file) }}" download
+                    <a href="{{ $design->model_file_url }}" download
                         class="inline-flex items-center gap-2 py-4 px-8 text-lg bg-blue-600 border-none rounded-sm text-white no-underline font-semibold transition-all duration-200 hover:bg-blue-700 shadow-lg shadow-blue-500/20 dark:shadow-blue-900/20">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"

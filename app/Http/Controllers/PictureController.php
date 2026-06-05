@@ -27,7 +27,7 @@ class PictureController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $path = $request->file('image')->store('pictures', 'public');
+        $path = $request->file('image')->store('pictures', 's3');
 
         Picture::create([
             'title' => $request->title,
@@ -44,7 +44,7 @@ class PictureController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        Storage::disk('public')->delete($picture->image_path);
+        Storage::disk('s3')->delete($picture->image_path);
         $picture->delete();
 
         return redirect()->route('pictures.index', ['admin' => $request->admin])->with('success', 'Picture deleted successfully.');
@@ -69,8 +69,8 @@ class PictureController extends Controller
 
         if ($request->hasFile('image')) {
             // Delete old image
-            Storage::disk('public')->delete($picture->image_path);
-            $data['image_path'] = $request->file('image')->store('pictures', 'public');
+            Storage::disk('s3')->delete($picture->image_path);
+            $data['image_path'] = $request->file('image')->store('pictures', 's3');
         }
 
         $picture->update($data);

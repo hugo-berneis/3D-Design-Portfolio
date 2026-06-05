@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasTemporaryS3Url;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Design extends Model
 {
     use HasFactory;
+    use HasTemporaryS3Url;
 
     protected $fillable = [
         'title',
@@ -27,4 +30,16 @@ class Design extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    /**
+     * Temporary signed S3 URL for the uploaded STL model file.
+     */
+    protected function modelFileUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn (): ?string => $this->model_file
+                ? $this->temporaryS3Url($this->model_file)
+                : null,
+        );
+    }
 }

@@ -46,15 +46,15 @@
             @forelse($pictures as $picture)
                 <div class="bg-white dark:bg-neutral-900 rounded-sm overflow-hidden shadow-sm transition-all duration-200 cursor-pointer border border-neutral-200 dark:border-neutral-800 hover:shadow-lg hover:border-neutral-400 dark:hover:border-neutral-700 group portfolio-card"
                     data-id="{{ $picture->id }}"
-                    @if (Str::endsWith($picture->image_path, '.pdf')) onclick="window.open('{{ Storage::url($picture->image_path) }}', '_blank')" @else
-                        onclick="openLightbox('{{ Storage::url($picture->image_path) }}', '{{ addslashes($picture->title) }}', '{{ addslashes($picture->description) }}')" @endif>
+                    @if (Str::endsWith($picture->image_path, '.pdf')) onclick="window.open('{{ $picture->image_url }}', '_blank')" @else
+                        onclick="openLightbox('{{ $picture->image_url }}', '{{ addslashes($picture->title) }}', '{{ addslashes($picture->description) }}')" @endif>
                     @if (Str::endsWith($picture->image_path, '.pdf'))
                         <div class="h-[200px] flex flex-col items-center justify-center bg-neutral-100 dark:bg-neutral-950 text-red-500">
                             <span class="text-5xl mb-2">PDF</span>
                             <span class="text-xs text-neutral-500 dark:text-neutral-400">Click to view document</span>
                         </div>
                     @else
-                        <img src="{{ Storage::url($picture->image_path) }}" alt="{{ $picture->title }}"
+                        <img src="{{ $picture->image_url }}" alt="{{ $picture->title }}"
                             class="cursor-zoom-in w-full h-[250px] border-b border-neutral-200 dark:border-neutral-800 object-cover block">
                     @endif
                     <div class="p-6">

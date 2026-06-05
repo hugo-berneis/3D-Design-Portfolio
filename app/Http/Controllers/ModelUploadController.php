@@ -18,10 +18,10 @@ class ModelUploadController extends Controller
         $design = Design::findOrFail($request->design_id);
 
         if ($design->model_file) {
-            Storage::delete($design->model_file);
+            Storage::disk('s3')->delete($design->model_file);
         }
 
-        $path = $request->file('model_file')->store('models', 'public');
+        $path = $request->file('model_file')->store('models', 's3');
 
         $design->update(['model_file' => $path]);
 
@@ -31,7 +31,7 @@ class ModelUploadController extends Controller
     public function destroy(Design $design)
     {
         if ($design->model_file) {
-            Storage::delete($design->model_file);
+            Storage::disk('s3')->delete($design->model_file);
             $design->update(['model_file' => null]);
         }
 
