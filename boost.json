@@ -1,16 +1,10 @@
 {
     "agents": [
-        "codex",
-        "copilot",
-        "cursor",
-        "gemini",
-        "phpstorm"
+        "claude_code",
+        "copilot"
     ],
     "editors": [
-        "codex",
-        "cursor",
-        "gemini",
-        "phpstorm",
+        "claude_code",
         "vscode"
     ],
     "guidelines": [],
