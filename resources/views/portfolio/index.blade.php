@@ -34,7 +34,7 @@
                 @if ($design->model_file)
                     <a href="{{ route('portfolio.show', $design) }}" class="cursor-pointer">
                         <div class="w-full h-[250px] bg-neutral-50 dark:bg-neutral-900 rounded-sm relative overflow-hidden border-b border-neutral-200 dark:border-neutral-800 group"
-                            data-model-viewer data-model-path="{{ Storage::url($design->model_file) }}"
+                            data-model-viewer data-model-path="{{ $design->model_file_url }}"
                             data-design-id="{{ $design->id }}" data-rotation-x="{{ $design->rotation_x }}"
                             data-rotation-y="{{ $design->rotation_y }}" data-rotation-z="{{ $design->rotation_z }}">
                             <div
