@@ -86,7 +86,7 @@
                             </div>
                             <span
                                 class="text-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 px-3 py-1 rounded-sm">2025
-                                — 2029</span>
+                                — 2026</span>
                         </div>
                         <p class="text-neutral-500 mb-6 text-sm">GPA: ~</p>
                         <div class="flex flex-wrap gap-2">
