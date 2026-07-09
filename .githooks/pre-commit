@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+# Prevent committing transient Laravel cache rows into the tracked SQLite
+# database. With CACHE_STORE=database, rendering pages writes presigned S3
+# URLs (which embed AWS credential material) into the `cache` table; if the
+# database file is then committed, GitHub push protection blocks the push.
+#
+# This hook clears the cache tables from database/database.sqlite whenever it
+# is staged, VACUUMs to purge the bytes from free pages, and re-stages the
+# cleaned file. A final scan aborts the commit if any AWS key material remains.
+
+set -e
+
+DB="database/database.sqlite"
+
+# Only act when the SQLite database is actually staged for this commit.
+if ! git diff --cached --name-only | grep -qx "$DB"; then
+    exit 0
+fi
+
+if ! command -v sqlite3 >/dev/null 2>&1; then
+    echo "pre-commit: sqlite3 not found; cannot clean $DB — aborting commit" >&2
+    exit 1
+fi
+
+sqlite3 "$DB" "DELETE FROM cache; DELETE FROM cache_locks; VACUUM;" || {
+    echo "pre-commit: failed to clear cache tables in $DB — aborting commit" >&2
+    exit 1
+}
+git add "$DB"
+
+# Safety net: block the commit if any AWS credential material survives.
+if strings "$DB" | grep -qE 'AKIA[A-Z0-9]{16}|X-Amz-Signature|X-Amz-Credential'; then
+    echo "pre-commit: AWS credential material still present in $DB after cleaning — aborting commit" >&2
+    exit 1
+fi
+
+echo "pre-commit: cleared Laravel cache tables in $DB"
+exit 0
