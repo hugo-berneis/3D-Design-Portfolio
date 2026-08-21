@@ -81,6 +81,26 @@
                         class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-sm">
                         <div class="flex justify-between items-start mb-4">
                             <div>
+                                <h3 class="text-xl font-bold text-neutral-900 dark:text-white mb-1">New York University</h3>
+                                <p class="text-neutral-600 dark:text-neutral-400 font-medium">B.S. in Computer Science</p>
+                            </div>
+                            <span
+                                class="text-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 px-3 py-1 rounded-sm">2026
+                                — 2029</span>
+                        </div>
+                        <p class="text-neutral-500 mb-6 text-sm">GPA: ~</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-xs uppercase tracking-wider">Computer
+                                Science Major</span>
+                            <span
+                                class="px-3 py-1 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-xs uppercase tracking-wider">Business Minor</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-sm">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
                                 <h3 class="text-xl font-bold text-neutral-900 dark:text-white mb-1">Seattle University</h3>
                                 <p class="text-neutral-600 dark:text-neutral-400 font-medium">B.S. in Computer Science</p>
                             </div>
@@ -88,7 +108,7 @@
                                 class="text-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 px-3 py-1 rounded-sm">2025
                                 — 2026</span>
                         </div>
-                        <p class="text-neutral-500 mb-6 text-sm">GPA: ~</p>
+                        <p class="text-neutral-500 mb-6 text-sm">GPA: 3.8</p>
                         <div class="flex flex-wrap gap-2">
                             <span
                                 class="px-3 py-1 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-xs uppercase tracking-wider">Computer
@@ -208,7 +228,7 @@
                         </div>
                     </div>
 
-                    <div
+                    {{-- <div
                         class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-sm group hover:border-neutral-400 dark:hover:border-neutral-700 transition-colors">
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-xl font-bold text-neutral-900 dark:text-white">Piano Piece Generator</h3>
@@ -228,7 +248,7 @@
                                 class="text-sm text-neutral-600 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white transition-colors">Live
                                 Demo →</a>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div
                         class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-sm group hover:border-neutral-400 dark:hover:border-neutral-700 transition-colors">
@@ -252,6 +272,28 @@
                                 on Itch.io →</a>
                         </div>
                     </div>
+
+                    <div
+                        class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-sm group hover:border-neutral-400 dark:hover:border-neutral-700 transition-colors">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-neutral-900 dark:text-white">Capstone Project</h3>
+                            <span class="text-sm text-neutral-500">2024 — 2025</span>
+                        </div>
+                        <p class="text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">
+                            Group-based software development life cycle (SDLC) simulation. Collaborated in a team of
+                            four over six months with daily submissions and code reviews.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex gap-2">
+                                <span
+                                    class="text-[10px] uppercase tracking-tighter text-neutral-500 bg-neutral-200 dark:bg-neutral-800/50 px-2 py-0.5 rounded-sm">SDLC</span>
+                                <span
+                                    class="text-[10px] uppercase tracking-tighter text-neutral-500 bg-neutral-200 dark:bg-neutral-800/50 px-2 py-0.5 rounded-sm">Trello</span>
+                                <span
+                                    class="text-[10px] uppercase tracking-tighter text-neutral-500 bg-neutral-200 dark:bg-neutral-800/50 px-2 py-0.5 rounded-sm">Git</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -264,17 +306,276 @@
                 <div class="space-y-4">
                     <div
                         class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-sm">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold text-neutral-900 dark:text-white">Capstone Project</h3>
-                            <span class="text-sm text-neutral-500">2024 — 2025</span>
+                        <div class="flex justify-between items-start mb-1 gap-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-neutral-900 dark:text-white mb-1">User Experience
+                                    Researcher</h3>
+                                <p class="text-neutral-600 dark:text-neutral-400 font-medium">Lushy.app · Internship</p>
+                            </div>
+                            <span
+                                class="text-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 px-3 py-1 rounded-sm shrink-0">Jul
+                                2025 — Aug 2025</span>
                         </div>
-                        <p class="text-neutral-600 dark:text-neutral-400 mb-4">Group-based software development life cycle
-                            (SDLC) simulation.</p>
-                        <ul class="text-neutral-500 space-y-2 text-sm list-inside list-disc">
-                            <li>Collaborated in a team of four over six months</li>
-                            <li>Task management via Trello and Git-based workflow</li>
-                            <li>Daily submissions and code reviews</li>
+                        <p class="text-neutral-500 mb-6 text-sm">Portland, Oregon, United States · Remote</p>
+                        <ul class="text-neutral-500 dark:text-neutral-400 space-y-2 text-sm list-inside list-disc mb-6">
+                            <li>Developed 5 customized AI for game developers by prompting LLMs, generating well
+                                defined sprites with high accuracy.</li>
+                            <li>Incorporated 10 detailed lists and libraries creating a friendlier user environment,
+                                improving accessibility for users.</li>
+                            <li>Integrated audio, image, 3D model, and text generation into models, broadening user
+                                options with specific needs.</li>
+                            <li>Refined interface language and syntax for clarity and consistency, resulting in a more
+                                intuitive user experience.</li>
+                            <li>Tracked costs of generation, noting which generation types and models (ChatGPT, Gemini,
+                                Claude) cost more.</li>
                         </ul>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-xs uppercase tracking-wider">Prompt
+                                Engineering</span>
+                            <span
+                                class="px-3 py-1 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-xs uppercase tracking-wider">User
+                                Experience (UX)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certificates -->
+            <section>
+                <h2 class="text-2xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center gap-3">
+                    <span class="w-8 h-px bg-neutral-300 dark:bg-neutral-700"></span>
+                    Certificates
+                </h2>
+
+                <!-- Featured certificate -->
+                <div
+                    class="bg-neutral-50 dark:bg-neutral-900 border-2 border-neutral-300 dark:border-neutral-700 p-8 rounded-sm mb-3">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <img src="{{ asset('images/certificates/claude-certified-architect-foundations.webp') }}"
+                            alt="Claude Certified Architect - Foundations certificate"
+                            class="w-full md:w-72 shrink-0 rounded-sm border border-neutral-200 dark:border-neutral-800">
+                        <div class="flex-1 w-full">
+                            <div class="flex justify-between items-start mb-1 gap-4">
+                                <h3 class="text-xl font-bold text-neutral-900 dark:text-white">Claude Certified Architect —
+                                    Foundations</h3>
+                                <span
+                                    class="text-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 px-3 py-1 rounded-sm shrink-0">Aug
+                                    2026</span>
+                            </div>
+                            <p class="text-neutral-600 dark:text-neutral-400 font-medium mb-1">Anthropic</p>
+                            <p class="text-neutral-500 mb-4 text-sm">Expires Aug 17, 2027</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="px-3 py-1 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-xs uppercase tracking-wider">Agentic
+                                    AI Architecture</span>
+                                <span
+                                    class="px-3 py-1 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-xs uppercase tracking-wider">Claude
+                                    Deployment</span>
+                            </div>
+                            <a href="https://www.credly.com/badges/0ada30af-871b-4424-9cb0-bb33a75f7bd0" target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-sm text-neutral-600 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white transition-colors">View
+                                Credential →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other certificates -->
+                <div class="space-y-2">
+                    <div
+                        class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-4 rounded-sm">
+                        <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                            <h3 class="font-bold text-neutral-900 dark:text-white text-sm">Claude Code in Action</h3>
+                            <span class="text-xs text-neutral-500">Jun 2026</span>
+                        </div>
+                        <p class="text-neutral-500 dark:text-neutral-400 text-xs mb-2">Anthropic - Credential ID
+                            9rwronysh5md</p>
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Anthropic
+                                    Claude</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Claude
+                                    Skills</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Prompt 
+                                    Engineering</span>
+                            </div>
+                            <a href="https://verify.skilljar.com/c/9rwronysh5md"
+                                class="text-xs text-neutral-600 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white transition-colors">
+                                Certificate link →</a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-4 rounded-sm">
+                        <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                            <h3 class="font-bold text-neutral-900 dark:text-white text-sm">Python for Data Science, AI &
+                                Development</h3>
+                            <span class="text-xs text-neutral-500">Jun 2026</span>
+                        </div>
+                        <p class="text-neutral-500 dark:text-neutral-400 text-xs mb-2">IBM - Credential ID S103EPRO0CNA</p>
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Python</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Pandas</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">NumPy</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Jupyter</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Beautiful Soup</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">REST APIs</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Web Scraping</span>
+                            </div>
+                            <a href="https://www.coursera.org/account/accomplishments/verify/S1O3EPRO0CNA"
+                                class="text-xs text-neutral-600 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white transition-colors">
+                                Certificate link →</a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-4 rounded-sm">
+                        <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                            <h3 class="font-bold text-neutral-900 dark:text-white text-sm">AI Fluency Framework &
+                                Foundations</h3>
+                            <span class="text-xs text-neutral-500">Add date</span>
+                        </div>
+                        <p class="text-neutral-500 dark:text-neutral-400 text-xs mb-2">Anthropic - Credential ID
+                            kmuhqxc4joyw</p>
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">AI
+                                    Fluency</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Delegation</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Discernment</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Responsible
+                                    AI Use</span>
+                            </div>
+                            <a href="https://verify.skilljar.com/c/kmuhqxc4joyw"
+                                class="text-xs text-neutral-600 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white transition-colors">
+                                Certificate link →</a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-4 rounded-sm">
+                        <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                            <h3 class="font-bold text-neutral-900 dark:text-white text-sm">Building with the Claude API</h3>
+                            <span class="text-xs text-neutral-500">Add date</span>
+                        </div>
+                        <p class="text-neutral-500 dark:text-neutral-400 text-xs mb-2">Anthropic - Credential ID
+                            gnt9fzm27fdr</p>
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Claude
+                                    API</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Tool
+                                    Use</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Streaming
+                                    Responses</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">API
+                                    Integration</span>
+                            </div>
+                            <a href="https://verify.skilljar.com/c/gnt9fzm27fdr"
+                                class="text-xs text-neutral-600 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white transition-colors">
+                                Certificate link →</a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-4 rounded-sm">
+                        <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                            <h3 class="font-bold text-neutral-900 dark:text-white text-sm">Introduction to Model Context
+                                Protocol</h3>
+                            <span class="text-xs text-neutral-500">Add date</span>
+                        </div>
+                        <p class="text-neutral-500 dark:text-neutral-400 text-xs mb-2">Anthropic - Credential ID
+                            brfh4ozicj4n</p>
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">MCP</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Tool
+                                    Servers</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Protocol
+                                    Design</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Context
+                                    Management</span>
+                            </div>
+                            <a href="https://verify.skilljar.com/c/brfh4ozicj4n"
+                                class="text-xs text-neutral-600 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white transition-colors">
+                                Certificate link →</a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-4 rounded-sm">
+                        <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                            <h3 class="font-bold text-neutral-900 dark:text-white text-sm">Introduction to Agent Skills</h3>
+                            <span class="text-xs text-neutral-500">Add date</span>
+                        </div>
+                        <p class="text-neutral-500 dark:text-neutral-400 text-xs mb-2">Anthropic - Credential ID
+                            6n55dmy4zxao</p>
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Agent
+                                    Skills</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Skill
+                                    Design</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Workflow
+                                    Automation</span>
+                            </div>
+                            <a href="https://verify.skilljar.com/c/6n55dmy4zxao"
+                                class="text-xs text-neutral-600 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white transition-colors">
+                                Certificate link →</a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-4 rounded-sm">
+                        <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                            <h3 class="font-bold text-neutral-900 dark:text-white text-sm">Claude 101</h3>
+                            <span class="text-xs text-neutral-500">Add date</span>
+                        </div>
+                        <p class="text-neutral-500 dark:text-neutral-400 text-xs mb-2">Anthropic - Credential ID
+                            dc2bo34otqbv</p>
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">AI
+                                    Fundamentals</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Conversational
+                                    AI</span>
+                                <span
+                                    class="px-2 py-0.5 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-transparent rounded-sm text-[10px] uppercase tracking-wider">Claude
+                                    Basics</span>
+                            </div>
+                            <a href="https://verify.skilljar.com/c/dc2bo34otqbv"
+                                class="text-xs text-neutral-600 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white transition-colors">
+                                Certificate link →</a>
+                        </div>
                     </div>
                 </div>
             </section>
